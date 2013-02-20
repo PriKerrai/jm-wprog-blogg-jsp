@@ -10,7 +10,7 @@ public class LoginForm {
 	private String loginForm = 
 			"<div id=\"login-form-box\">"+
 				"<p id=\"login-form-title\">Login</p>"+
-				"<form action=\"function/process_login_form.jsp\" method=\"post\">"+
+				"<form action=\"process_login_form.jsp\" method=\"post\">"+
 					"<div id=\"login-form-text-box\">"+
 						"Username: "+
 						"<br />"+

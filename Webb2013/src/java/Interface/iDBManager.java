@@ -10,5 +10,14 @@ package Interface;
  */
 public abstract interface iDBManager {
 	
+	public abstract int getLatestBlogPost(int blogID);
+	
+	public abstract String getBlogPostTitle(int blogID, int postID);
+	
+	public abstract String getBlogPostContent(int blogID, int postID);
+	
+	public abstract String getBlogPostDate(int blogID, int postID);
+	
+	public abstract String getBlogPostAuthor(int blogID, int postID);
 	
 }
