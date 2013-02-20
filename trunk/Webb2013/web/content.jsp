@@ -11,6 +11,8 @@
 	<%
 		if (request.getParameter("login") != null) {
 			out.println(new GUI.LoginForm().getLoginForm());
+		} else if (request.getParameter("register") != null) {
+			out.println(new GUI.RegisterForm().getRegisterForm());
 		}
 	%>
 
