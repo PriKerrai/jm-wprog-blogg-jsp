@@ -101,7 +101,7 @@ hr {
 
 /* NORTH AREA: TITLE + NAVIGATION BAR */
 
-#blogg-title {
+#blog-title {
 	display: block;
 	font-size: 30px;
 	font-weight: bold;
@@ -116,9 +116,33 @@ hr {
 	padding: 0;
 }
 #nav-bar-content li {
+	float: left;
 	font-size: 16px;
 	display: inline;
 	padding: .2em 1em;
+}
+#nav-bar-content li:last-child {
+	float: right;
+	margin: 0px 10% 0px 0px;
+}
+
+
+/* BLOG POST */
+#blog-content-box {
+	margin: 40px 50px 0px 50px;
+}
+#blog-post-title {
+	font-size: 22px;
+	font-weight: bold;
+}
+#blog-post-date {
+	font-size: 12px;
+}
+#blog-post-content {
+	text-align: justify;
+}
+#blog-post-author {
+	font-size: 12px;
 }
 
 

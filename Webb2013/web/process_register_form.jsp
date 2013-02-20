@@ -4,14 +4,17 @@
     Author     : Josef
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>JSP Page</title>
-	</head>
-	<body>
-		<h1>Hello World!</h1>
-	</body>
-</html>
+<jsp:useBean id="user" class="Bean.UserData" scope="application" />
+<jsp:setProperty name="user" property="*"/>
+
+<%@ page import="Logic.ProcessRegisterForm"
+				 import="java.io.*"
+				 import="java.util.*" 
+%>
+<%
+	ProcessRegisterForm process = new ProcessRegisterForm(user);
+	
+	// Redirect user back to index
+	response.setStatus(response.SC_MOVED_TEMPORARILY);
+	response.setHeader("Location", "index.jsp"); 
+%>

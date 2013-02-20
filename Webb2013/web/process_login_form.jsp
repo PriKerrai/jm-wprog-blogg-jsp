@@ -6,8 +6,15 @@
 
 <jsp:useBean id="user" class="Bean.UserData" scope="application" />
 <jsp:setProperty name="user" property="*"/>
+
+<%@ page import="Logic.ProcessLoginForm"
+				 import="java.io.*"
+				 import="java.util.*" 
+%>
 <%
-	Logic.ProcessLoginForm process = new Logic.ProcessLoginForm(user);
+	ProcessLoginForm process = new ProcessLoginForm(user);
 	
-	
+	// Redirect user back to index
+	response.setStatus(response.SC_MOVED_TEMPORARILY);
+	response.setHeader("Location", "index.jsp"); 
 %>
