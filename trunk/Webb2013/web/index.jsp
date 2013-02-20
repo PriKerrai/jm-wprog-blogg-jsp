@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 2013-feb-19, 18:44:33
-    Author     : Josef
+    Author     : Josef Holmér, Martin Nilsson
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,21 +17,13 @@
 				
 		<div id="wrapper">
 			<div id="wrapper-north">
-				<a id="blogg-title" href=""><% out.print("Insert Blogg Title"); %></a>
+				<jsp:include page="header.jsp" />
 			</div>
 			<div id="center-wrapper">
-				<div id="wrapper-west">
-
-				</div>
-				<div id="wrapper-center">
-
-				</div>
-				<div id="wrapper-east">
-
-				</div>
+				<jsp:include page="content.jsp" />
 			</div>
 			<div id="wrapper-south">
-				
+				<jsp:include page="footer.jsp" />
 			</div>
 		</div>
 			
