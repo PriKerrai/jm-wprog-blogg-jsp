@@ -8,12 +8,18 @@ package GUI;
 public class LoginForm {
 	
 	private String loginForm = 
-			"<div id=\"login-box\">"+
+			"<div id=\"login-form-box\">"+
+				"<p id=\"login-form-title\">Login</p>"+
 				"<form id=\"login-form\" action=\"process_form.jsp\" method=\"post\">"+
-					"<div>"+
-						"Login: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"text\" name=\"username\" value=\"\" />"+
+					"<div id=\"login-form-text-box\">"+
+						"Username: "+
 						"<br />"+
-						"Password: <input type=\"text\" name=\"username\" value=\"\" />"+
+						"Password: "+
+					"</div>"+
+					"<div id\"login-form-input-box\">"+
+						"<input type=\"text\" name=\"username\" value=\"\" />"+
+						"<br />"+
+						"<input type=\"password\" name=\"password\" value=\"\" />"+
 					"</div>"+
 				"</form>"+
 			"</div>";
