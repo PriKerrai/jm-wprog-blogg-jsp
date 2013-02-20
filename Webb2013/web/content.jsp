@@ -3,7 +3,6 @@
     Created on : 2013-feb-20, 16:25:43
     Author     : Josef
 --%>
-
 <div id="wrapper-west">
 	
 </div>
@@ -13,9 +12,10 @@
 			out.println(new GUI.LoginForm().getLoginForm());
 		} else if (request.getParameter("register") != null) {
 			out.println(new GUI.RegisterForm().getRegisterForm());
+		} else if (request.getParameter("index") != null) {
+			
 		}
 	%>
-
 </div>
 <div id="wrapper-east">
 	<jsp:include page="sidebar.jsp" />
