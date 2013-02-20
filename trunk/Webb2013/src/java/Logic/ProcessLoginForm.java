@@ -18,6 +18,6 @@ public class ProcessLoginForm {
 	}
 	
 	private void login(UserData user) {
-		// Logga in användaren
+		// Login user
 	}
 }

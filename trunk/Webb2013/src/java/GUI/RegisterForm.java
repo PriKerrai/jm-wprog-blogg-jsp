@@ -13,7 +13,7 @@ public class RegisterForm {
 	private String registerForm =
 			"<div id=\"register-form-box\">"+
 				"<p id=\"register-form-title\">Register</p>"+
-				"<form action=\"function/process_register_form.jsp\" method=\"post\">"+
+				"<form action=\"process_register_form.jsp\" method=\"post\">"+
 					"<div id=\"register-form-text-box\">"+
 						"UserID: "+
 						"<br />"+
