@@ -11,9 +11,23 @@ body {
 a {
 	text-decoration: none;
 }
-
 a:hover {
 	color: #CCC;
+}
+
+input {
+	background: #444;
+	border: #666 solid 1px;
+}
+
+button {
+	color: white;
+	background: #555;
+	border: #777 solid 1px;
+}
+button:hover {
+	background: #666;
+	border: #888 solid 1px;
 }
 
 hr {
@@ -110,23 +124,40 @@ hr {
 
 /* LOGIN FORM */
 
-#login-form-title {
-	font-size: 20px;
-	font-weight: bold;
-}
 #login-form-box {
 	margin: 40px 0px 0px 50px;
 	padding: 0;
 	line-height: 30px;
+	width: 33%;
 }
-#login-form input {
-	background: #444;
-	border: #666 solid 1px;
+#login-form-title {
+	font-size: 20px;
+	font-weight: bold;
 }
 #login-form-text-box {
 	float: left;
 }
 #login-form-input-box {
+	float: right;
+}
+
+
+/* REGISTER FORM */
+
+#register-form-box {
+	margin: 40px 0px 0px 50px;
+	padding: 0;
+	line-height: 30px;
+	width: 33%;
+}
+#register-form-title {
+	font-size: 20px;
+	font-weight: bold;
+}
+#register-form-text-box {
+	float: left;
+}
+#register-form-input-box {
 	float: right;
 }
 
@@ -140,6 +171,8 @@ hr {
 	padding: 0;
 }
 
-#clear {
+
+/* FLOAT CLEAR */
+div.clear {
 	clear: both;
 }
