@@ -13,7 +13,9 @@
 			out.println(new GUI.LoginForm().getLoginForm());
 		} else if (request.getParameter("register") != null) {
 			out.println(new GUI.RegisterForm().getRegisterForm());
-		} else {
+		} else if (request.getParameter("databaseLogin") !=null) {
+                        out.println(new GUI.DatabaseLoginForm().getDatabaseLoginForm());
+                } else {
 			// Print blogg post content
 			out.println(new GUI.BlogPage(1).getBlogPage());
 			if (user.getUserID() != null) {
