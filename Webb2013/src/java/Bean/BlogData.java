@@ -16,4 +16,6 @@ public class BlogData {
 	public int getBlogID() {
 		return blogID;
 	}
+        
+        
 }
