@@ -18,9 +18,8 @@ import java.sql.Statement;
 public class DBManager implements iDBManager {
 
     private static final String DRIVER_PATH = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String DATABASE_PATH = "";
-    private static final String USERNAME = "";
-    private static final String PASSWORD = "";
+    private static final String DATABASE_PATH = "jdbc:sqlserver://idasql-db.hb.se:56077;"
+            + "databaseName=dbtht1204;selectMethod=cursor";
     
     //USER
     private static final String GET_USER_ID = "SELECT UserID FROM UserInformation WHERE Nick = '";
@@ -40,7 +39,7 @@ public class DBManager implements iDBManager {
     
     // User Table
     private static final String CREATE_TABLE_USER =
-            "CREATE TABLE UserInformation("
+            "CREATE TABLE JM_UserInformation("
             + "UserID SMALLINT NOT NULL,"
             + "Nick VARCHAR(30) NOT NULL,"
             + "Password VARCHAR(30)NOT NULL,"
@@ -48,7 +47,7 @@ public class DBManager implements iDBManager {
     
     // Blogg Table
     private static final String CREATE_TABLE_BLOGG =
-            "CREATE TABLE BloggInformation("
+            "CREATE TABLE JM_BloggInformation("
             + "BloggID SMALLINT NOT NULL,"
             + "BloggHeader VARCHAR(50) NOT NULL,"
             + "BloggPostDate SMALLINT NOT NULL,"  //Date??
@@ -59,7 +58,7 @@ public class DBManager implements iDBManager {
     
     // Comment Table
     private static final String CREATE_TABLE_COMMENT =
-            "CREATE TABLE BloggComment("
+            "CREATE TABLE JM_BloggComment("
             + "UserID SMALLINT NOT NULL,"
             + "BloggID SMALLINT NOT NULL,"
             + "CommentPostDate Date NOT NULL,"
@@ -72,14 +71,16 @@ public class DBManager implements iDBManager {
     private Statement statement;
     
     public DBManager() {
-        //this.connection  connectDB();
+        
     }
-    
-    public Connection connectDB() {
+
+    public Connection connectDB(String username, String password) {
         try {
             Class.forName(DRIVER_PATH);
-            Connection connection = DriverManager.getConnection(DATABASE_PATH,
-                    USERNAME, PASSWORD);
+
+            System.out.println(username + password);
+             Connection connection = DriverManager.getConnection(DATABASE_PATH,username,password);
+             System.out.println(connection.getClientInfo());
             return connection;
         } catch (Exception e) {
             System.out.println(e);

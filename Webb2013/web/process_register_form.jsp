@@ -4,7 +4,7 @@
     Author     : Josef
 --%>
 
-<jsp:useBean id="user" class="Bean.UserData" scope="application" />
+<jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:setProperty name="user" property="*"/>
 
 <%@ page import="Logic.ProcessRegisterForm"
