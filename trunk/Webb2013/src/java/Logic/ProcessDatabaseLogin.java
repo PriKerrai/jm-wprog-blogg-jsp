@@ -4,7 +4,7 @@
  */
 package Logic;
 
-import Bean.UserData;
+import Bean.DatabaseLoginData;
 import Database.DBManager;
 import Interface.iDBManager;
 
@@ -15,16 +15,10 @@ import Interface.iDBManager;
 public class ProcessDatabaseLogin {
     
     private iDBManager dbManager = new DBManager();
-    
-    private void Server(UserData database) {
-		// Login with server
+
+    public ProcessDatabaseLogin(DatabaseLoginData database) {
+            System.out.println(database.getDatabaseLogin() + database.getDatabasePassword());
+            dbManager.connectDB(database.getDatabaseLogin(), database.getDatabasePassword());
 	}
-    
-    private void UserName(UserData database) {
-		// Login with UserName
-	}
-    
-    private void password(UserData database) {
-		// Login with password
-	}
+
 }

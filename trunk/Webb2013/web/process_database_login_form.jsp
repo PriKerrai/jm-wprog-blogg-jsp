@@ -7,12 +7,13 @@
 <jsp:useBean id="database" class="Bean.DatabaseLoginData" scope="application" />
 <jsp:setProperty name="database" property="*" />
 
-<%@page import="Logic.ProcessDatabaseLogin" 
-                        import="java.io.*"
-                        import="java.util.*"
+<%@ page import="Logic.ProcessDatabaseLogin"
+				 import="java.io.*"
+				 import="java.util.*"
 %>
 
 <%
+        System.out.println(database.getDatabaseLogin() + database.getDatabasePassword());
         ProcessDatabaseLogin process = new ProcessDatabaseLogin(database);
         
         // Redirect user back to index

@@ -4,6 +4,8 @@
  */
 package Interface;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Josef
@@ -20,4 +22,5 @@ public abstract interface iDBManager {
 	
 	public abstract String getBlogPostAuthor(int blogID, int postID);
 	
+        public abstract Connection connectDB(String username, String password);
 }
