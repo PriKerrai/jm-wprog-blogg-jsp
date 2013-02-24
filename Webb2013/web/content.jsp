@@ -22,7 +22,7 @@
 				out.println("<br />");
 				// Print blogg comment form
 				//commentBox = "comment_box.jsp";
-				out.println("Comment section");
+				out.println("Comment section ");
 			}
 		}
 	%>
