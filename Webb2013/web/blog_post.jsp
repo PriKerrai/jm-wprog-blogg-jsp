@@ -11,9 +11,12 @@
 	
 	iDBManager dbManager = new DBManager();
 	
-	int blogID = Integer.parseInt(request.getParameter("blogID"));
+	int blogID;
 	String blogPage = "";
 	
+	if (request.getParameter("blogid") != null) {
+		blogID = Integer.parseInt(request.getParameter("blogid"));
+		
 		// Hämta senaste blogginlägget från nuvarande blogg från DB
 		int postID = dbManager.getLatestBlogPost(blogID);
 		String postTitle = dbManager.getBlogPostTitle(blogID, postID);
@@ -28,4 +31,8 @@
 				"<p id=\"blog-post-content\">"+postContent+"</p>"+
 				"<p id=\"blog-post-author\">Written by: "+postAuthor+"</p>"+
 			"</div>";
+		
+		out.println(blogPage);
+	} else
+		out.println("Something went wrong");
 %>
