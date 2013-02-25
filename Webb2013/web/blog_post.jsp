@@ -35,4 +35,5 @@
 		out.println(blogPage);
 	} else
 		out.println("Something went wrong");
+	
 %>
