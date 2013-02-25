@@ -1,21 +1,29 @@
-
 package Bean;
 
 /**
  * BlogData Bean
+ *
  * @author Josef
  */
 public class BlogData {
-	
-	private int blogID;
-	
-	public void setBlogID(int newID) {
-		blogID = newID;
-	}
-	
-	public int getBlogID() {
-		return blogID;
-	}
-        
-        
+
+    private int blogID;
+    private String blogName;
+
+    public void setBlogID(int newID) {
+        blogID = newID;
+    }
+
+    public int getBlogID() {
+        return blogID;
+    }
+
+    public void setBlogName(String bName) {
+
+        blogName = bName;
+    }
+
+    public String getBlogName() {
+        return blogName;
+    }
 }

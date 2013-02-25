@@ -4,17 +4,21 @@
     Author     : Kerrai
 --%>
 
-<div id="databaselogin-form-box">
-				<p id="databaselogin-form-title">Database Login</p>
-				<form action="process_database_login_form.jsp" method="post">
-					<div id="databaselogin-form-text-box">
-                                               Database Login 
-                                               <input type="login" name="databaseLogin">
-                                               <br />
-                                               Database Password 
-                                               <input type="password" name="databasePassword">
-                                               <input type="submit" name="submit" value="Login" />
-                                </div>
-                                
-				</form>
-			</div>
+
+
+
+
+<div id="login-form-text-box">
+    <p id="login-form-title">Database Login</p>
+    <form action="process_create_blog_form.jsp" method="post">
+        <div id="login-form-text-box">
+            Name your blog
+            <input type="createBlog" name="blogName">
+            <br />
+            Please enter account password 
+            <input type="password" name="databasePassword">
+            <input type="submit" name="submit" value="Login" />
+        </div>
+
+    </form>
+</div>
