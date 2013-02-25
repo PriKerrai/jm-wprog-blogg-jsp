@@ -13,7 +13,6 @@
 %>
 
 <%
-        System.out.println(database.getDatabaseLogin() + database.getDatabasePassword());
         ProcessDatabaseLogin process = new ProcessDatabaseLogin(database);
         
         // Redirect user back to index
