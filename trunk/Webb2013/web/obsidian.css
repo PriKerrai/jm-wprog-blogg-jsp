@@ -121,8 +121,8 @@ hr {
 	display: inline;
 	padding: .2em 1em;
 }
-#nav-bar-content li:last-child {
-	float: right;
+#nav-bar-createblog {
+	float: right !important;
 	margin: 0px 10% 0px 0px;
 }
 
@@ -170,20 +170,17 @@ hr {
 /* DATABASE LOGIN FORM */
 
 #databaselogin-form-box {
-	margin: 40px 0px 0px 50px;
+	margin: 40px 0px 0px 0px;
 	padding: 0;
 	line-height: 30px;
-	width: 33%;
+	width: 60%;
 }
 #databaselogin-form-title {
 	font-size: 20px;
 	font-weight: bold;
 }
 #databaselogin-form-text-box {
-	float: left;
-}
-#databaselogin-form-input-box {
-	float: right;
+	/*float: left;*/
 }
 
 
@@ -204,6 +201,20 @@ hr {
 }
 #register-form-input-box {
 	float: right;
+}
+
+
+/* CREATE BLOG FORM */
+
+#createblog-form-box {
+	margin: 40px 0px 0px 50px;
+	padding: 0;
+	line-height: 30px;
+	width: 33%;
+}
+#createblog-form-title {
+	font-size: 20px;
+	font-weight: bold;
 }
 
 

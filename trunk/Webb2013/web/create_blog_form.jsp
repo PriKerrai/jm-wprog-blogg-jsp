@@ -4,23 +4,17 @@
     Author     : Kerrai
 --%>
 
-
-
-
-
-<div id="login-form-text-box">
-    <p id="login-form-title">Create a new blog</p>
-    <form action="process_create_blog_form.jsp" method="post">
-        <div id="login-form-text-box">
-            Name your blog
-            <input type="createBlog" name="blogName">
-            <br />
-            <br />
-            Please enter account password 
-            <input type="password" name="databasePassword">
-            <br />
-            <input type="submit" name="submit" value="Create Blog" />
-        </div>
-
-    </form>
+<div id="createblog-form-box">
+	<p id="createblog-form-title">Create Blog</p>
+  <form action="process_create_blog_form.jsp" method="post">
+		<div id="createblog-form-text-box">
+			Name your blog:
+			<input type="text" name="blogName">
+			<br />
+			Please enter your password:
+			<input type="password" name="databasePassword">
+			<br />
+			<input type="submit" name="submit" value="Submit" />
+		</div>
+	</form>
 </div>
