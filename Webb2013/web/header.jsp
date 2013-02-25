@@ -10,8 +10,7 @@
 		<li><a href="?index=true">Home</a></li>
 		<li><a href="?login=true">Login</a></li>
 		<li><a href="?register=true">Register</a></li>
-		<li><a href="?register-blog=true">Create Blog</a></li>
-        
+		<li><a href="?createblog=true">Create Blog</a></li>
 	</ul>
 	<div class="clear"></div>
 </div>

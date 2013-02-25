@@ -12,6 +12,8 @@
 			<jsp:include page="login_form.jsp" />
 <%	} else if (request.getParameter("register") != null) { %>
 			<%-- <jsp:include page="register_form.jsp" /> --%>
+<%	} else if (request.getParameter("createblog") != null) { %>
+			<jsp:include page="create_blog_form.jsp" />
 <%	} else if (request.getParameter("blogid") != null) { %>
 			<jsp:include page="blog_post.jsp" />
 <%		if (user.getUserID() != null) {
@@ -24,5 +26,5 @@
 %>
 </div>
 <div id="wrapper-east">
-    <jsp:include page="sidebar.jsp" />
+	<jsp:include page="sidebar.jsp" />
 </div>
