@@ -3,7 +3,7 @@
     Created on : 2013-feb-19, 18:44:33
     Author     : Josef Holmér, Martin Nilsson
 --%>
-
+<%@taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

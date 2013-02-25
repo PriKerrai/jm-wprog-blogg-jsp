@@ -7,29 +7,21 @@
 
 </div>
 <div id="wrapper-center">
-    <jsp:useBean id="user" class="Bean.UserData" scope="application" />
-    <%
-        String contentPage = "";
-        String commentBox = "";
-        if (request.getParameter("login") != null) {
-            contentPage = "login_form.jsp";
-        } else if (request.getParameter("register") != null) {
-            contentPage = "register_form.jsp";
-        } else if (request.getParameter("register-blog") != null) {
-               contentPage = "create_blog_form.jsp";
-        } else {
-            // Print blogg post content
-            contentPage = "blog_post.jsp";
-            if (user.getUserID() != null) {
-                out.println("<br />");
-                // Print blogg comment form
-                //commentBox = "comment_box.jsp";
-                out.println("Comment section ");
-            }
-        }
-    %>
-    <jsp:include page="<%= contentPage%>" />
-    <jsp:include page="<%= commentBox%>" />
+	<jsp:useBean id="user" class="Bean.UserData" scope="application" />
+<%	if (request.getParameter("login") != null) { %>
+			<jsp:include page="login_form.jsp" />
+<%	} else if (request.getParameter("register") != null) { %>
+			<%-- <jsp:include page="register_form.jsp" /> --%>
+<%	} else if (request.getParameter("blogid") != null) { %>
+			<jsp:include page="blog_post.jsp" />
+<%		if (user.getUserID() != null) {
+				out.println("<br />");
+				//<jsp:include page="comments.jsp" />
+				out.println("Comment section");
+			}
+		} else
+			out.print("Vettifan vad");
+%>
 </div>
 <div id="wrapper-east">
     <jsp:include page="sidebar.jsp" />
