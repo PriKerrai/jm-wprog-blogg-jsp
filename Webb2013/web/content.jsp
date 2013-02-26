@@ -18,13 +18,12 @@
 			<jsp:include page="create_blog_form.jsp" />
 <%	} else if (request.getParameter("blogid") != null) { %>
 			<jsp:include page="blog_post.jsp" />
-<%		if (user.getUserID() != "") {
-				out.println("<br />");
-				//<jsp:include page="comments.jsp" />
-				out.println("Comment section");
-			}
+<%		if (user.getUserID() != "") { %>
+				<br/>
+				<jsp:include page="comments.jsp" />
+<%		}
 		} else
-			out.print("Something");
+			// Lista alla bloggar som finns registrerade i systemet?
 %>
 </div>
 <div id="wrapper-east">
