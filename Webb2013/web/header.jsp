@@ -11,6 +11,7 @@
 		<li><a href="?index=true">Home</a></li>
 		<li><a href="?login=true">Login</a></li>
 		<li><a href="?register=true">Register</a></li>
+		<li><a href="?dbtlogin=true">Dbt Login</a></li>
 		<% //if(user.getUserID() != "") { %>
 			<li id="nav-bar-createblog"><a href="?createblog=true">Create Blog</a></li>
 		<% //} %>
