@@ -4,6 +4,7 @@ package Logic;
 import Bean.UserData;
 import Database.DBManager;
 import Interface.iDBManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -17,11 +18,11 @@ public class ProcessRegisterForm {
 		
 	}
 	
-	public boolean isValidRegInput(UserData user) {
+	public boolean isValidRegInput(UserData user) throws SQLException {
 		return dbManager.isValidRegInput(user.getUserID(), user.getUsername());
 	}
 	
-	public void registerUser(UserData user) {
+	public void registerUser(UserData user) throws SQLException {
 		dbManager.registerUser(user);
 	}
 }
