@@ -20,7 +20,6 @@
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?register=true");
 	} else {
-		registerError.setError("");
 		process.registerUser(user);
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp");

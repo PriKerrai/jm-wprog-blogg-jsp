@@ -30,8 +30,8 @@ public abstract interface iDBManager {
 	
 	public abstract UserData userLogin(String username, String password);
 	
-	public abstract boolean isValidRegInput(String userID, String username);
+	public abstract boolean isValidRegInput(String userID, String username) throws SQLException;
 	
-	public abstract void registerUser(UserData user);
+	public abstract void registerUser(UserData user) throws SQLException;
 
 }

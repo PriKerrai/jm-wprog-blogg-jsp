@@ -22,7 +22,6 @@
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?login=true");
 	} else {
-		loginError.setError("");
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp");
 	}

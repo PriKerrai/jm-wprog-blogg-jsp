@@ -23,10 +23,12 @@ public class DBManager implements iDBManager {
             + "databaseName=dbtht1204;selectMethod=cursor";
     
     //USER
-		private static final String GET_USER = "SELECT * FROM UserInformation WHERE Username ='";
+		private static final String GET_USER = "SELECT * FROM UserInformation WHERE ";
     private static final String GET_USER_ID = "SELECT UserID FROM UserInformation WHERE Username = '";
     private static final String GET_USERNAME = "SELECT Username FROM UserInformation WHERE UserID = '";
     private static final String GET_PASSWORD = "SELECT Password FROM UserInformation WHERE UserID = '";
+		
+		private static final String INSERT_USER = "INSERT INTO JM_UserInformation VALUES (";
     
     //BLOGG
     private static final String GET_BLOGG_ID = "SELECT BloggID FROM BloggInformation WHERE UserID = '";
@@ -149,34 +151,53 @@ public class DBManager implements iDBManager {
     }
 		
 		@Override
-		public boolean isValidRegInput(String userID, String username) {
+		public boolean isValidRegInput(String userID, String username)
+		throws SQLException {
+			statement = connection.createStatement();
+      ResultSet result = statement.executeQuery(
+				GET_USER + "UserID = '" + userID + "'" +
+				"OR Username = '" + username + "'");
+			
+			if (result.next())
+				return false;
 			
 			return true;
 		}
 		
 		@Override
-		public void registerUser(UserData user) {
-			
+		public void registerUser(UserData user)
+		throws SQLException {
+			statement = connection.createStatement();
+			statement.executeUpdate(
+				INSERT_USER + "'" + user.getUserID() + "',"
+				+ "'" + user.getUsername() + "',"
+				+ "'" + user.getPassword() + "')"
+			);
 		}
 		
 		@Override
 		public boolean isValidLogin(String username, String password)
 		throws SQLException {
-			String matchUsername = "", 
-						 matchPassword = "";
+			//String matchUsername = "", 
+			//			 matchPassword = "";
 			
 			statement = connection.createStatement();
       ResultSet result = statement.executeQuery(
-				GET_USER + username + "'" +
-				"AND Password = '" + password + "'");
-      while (result.next()) {
-				matchUsername = result.getString("Username");
-				matchPassword = result.getString("Password");
-      }
+				GET_USER + "Username = '" + username + "'"
+				+ "AND Password = '" + password + "'"
+			);
+			
+			if (!result.next())
+				return false;
+			
+			/*result.first();
+			matchUsername = result.getString("Username");
+			matchPassword = result.getString("Password");
 			
 			if (matchUsername.equals(username) && matchPassword.equals(password))
-				return true;
-			return false;
+				return true;*/
+			
+			return true;
 		}
 		
 		@Override

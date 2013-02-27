@@ -3,13 +3,11 @@
     Created on : 2013-feb-24, 20:13:47
     Author     : Josef
 --%>
-<jsp:useBean id="registerError" class="Bean.Error" scope="session" />
+
+<jsp:useBean id="loginError" class="Bean.Error" scope="session" />
 
 <div id="login-form-box">
 	<p id="login-form-title">Login</p>
-	<% if (!registerError.getError().equals("")) { %>
-		<p><% out.println("Error: "+registerError.getError()); %></p>
-	<% } %>
 	<form action="process_login_form.jsp" method="post">
 		<div id="login-form-text-box">
 			Username: 
@@ -25,3 +23,7 @@
 		<button type="submit">Submit</button>
 	</form>
 </div>
+<% if (!loginError.getError().equals("")) { %>
+	<p class="error-msg"><% out.println("Error: "+loginError.getError()); %></p>
+<% } %>
+<% loginError.setError(""); %>
