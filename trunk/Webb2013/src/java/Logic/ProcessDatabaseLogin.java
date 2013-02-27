@@ -17,7 +17,7 @@ public class ProcessDatabaseLogin {
     private iDBManager dbManager = new DBManager();
 
     public ProcessDatabaseLogin(DatabaseLoginData database) {
-            dbManager.connectDB(database.getDatabaseLogin(), database.getDatabasePassword());
-	}
+			dbManager.connectDB(database.getDatabaseLogin(), database.getDatabasePassword());
+		}
 
 }

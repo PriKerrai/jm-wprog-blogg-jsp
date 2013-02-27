@@ -4,10 +4,10 @@
     Author     : Kerrai
 --%>
 
-<jsp:useBean id="createBlog" class="Bean.BlogData" scope="application" >
+<jsp:useBean id="createBlog" class="Bean.BlogData" scope="session" >
 <jsp:setProperty name="createBlog" property="*" />
 </jsp:useBean>
-<jsp:useBean id="user" class="Bean.UserData" scope="application" />
+<jsp:useBean id="user" class="Bean.UserData" scope="session" />
 
 <%@ page import="Logic.ProcessCreateBlogForm"
 				 import="java.io.*"
@@ -15,9 +15,9 @@
 %>
 
 <%
-        ProcessCreateBlogForm process = new ProcessCreateBlogForm(createBlog, user);
+	ProcessCreateBlogForm process = new ProcessCreateBlogForm(createBlog, user);
         
-        // Redirect user back to index
+	// Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", "index.jsp"); 
 %>

@@ -13,17 +13,15 @@ public class ProcessRegisterForm {
 	
 	private iDBManager dbManager = new DBManager();
 	
-	public ProcessRegisterForm(UserData user) {
-		if (isValidInput(user))
-			register(user);
+	public ProcessRegisterForm() {
+		
 	}
 	
-	private boolean isValidInput(UserData user) {
-		// Validera input
-		return true;
+	public boolean isValidRegInput(UserData user) {
+		return dbManager.isValidRegInput(user.getUserID(), user.getUsername());
 	}
 	
-	private void register(UserData user) {
-		// Register user
+	public void registerUser(UserData user) {
+		dbManager.registerUser(user);
 	}
 }

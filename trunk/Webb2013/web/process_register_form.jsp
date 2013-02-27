@@ -6,15 +6,23 @@
 
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:setProperty name="user" property="*"/>
+<jsp:useBean id="registerError" class="Bean.Error" scope="session" />
 
 <%@ page import="Logic.ProcessRegisterForm"
 				 import="java.io.*"
 				 import="java.util.*" 
 %>
+
 <%
-	ProcessRegisterForm process = new ProcessRegisterForm(user);
-	
-	// Redirect user back to index
-	response.setStatus(response.SC_MOVED_TEMPORARILY);
-	response.setHeader("Location", "index.jsp"); 
+	ProcessRegisterForm process = new ProcessRegisterForm();
+	if (!process.isValidRegInput(user)) {
+		registerError.setError("UserID and/or Username already in use.");
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", "index.jsp?register=true");
+	} else {
+		registerError.setError("");
+		process.registerUser(user);
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", "index.jsp");
+	}
 %>
