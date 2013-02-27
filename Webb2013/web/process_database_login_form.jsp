@@ -13,9 +13,9 @@
 %>
 
 <%
-        ProcessDatabaseLogin process = new ProcessDatabaseLogin(database);
+	ProcessDatabaseLogin process = new ProcessDatabaseLogin(database);
         
-        // Redirect user back to index
+	// Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", "index.jsp"); 
 %>

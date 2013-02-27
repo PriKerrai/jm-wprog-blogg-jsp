@@ -7,7 +7,7 @@
 
 </div>
 <div id="wrapper-center">
-	<jsp:useBean id="user" class="Bean.UserData" scope="application" />
+		<jsp:useBean id="user" class="Bean.UserData" scope="application" />
 <%	if (request.getParameter("login") != null) { %>
 			<jsp:include page="login_form.jsp" />
 <%	} else if (request.getParameter("dbtlogin") != null) { %>
@@ -22,7 +22,7 @@
 				<br/>
 				<jsp:include page="comments.jsp" />
 <%		}
-		} else
+		} //else
 			// Lista alla bloggar som finns registrerade i systemet?
 %>
 </div>

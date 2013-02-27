@@ -25,9 +25,18 @@ button {
 	background: #555;
 	border: #777 solid 1px;
 }
+#logout-button {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
 button:hover {
 	background: #666;
 	border: #888 solid 1px;
+}
+#logout-button:hover {
+	color: #CCC;
 }
 
 hr {
