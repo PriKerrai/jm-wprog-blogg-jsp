@@ -227,6 +227,12 @@ hr {
 }
 
 
+/* FORM ERROR MESSAGES */
+p.error-msg {
+	margin: 0px 0px 0px 50px;
+}
+
+
 /* FOOTER */
 
 #footer-content {

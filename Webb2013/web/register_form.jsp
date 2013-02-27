@@ -4,6 +4,8 @@
     Author     : Josef
 --%>
 
+<jsp:useBean id="registerError" class="Bean.Error" scope="session" />
+
 <div id="register-form-box">
 	<p id="register-form-title">Register</p>
 	<form action="process_register_form.jsp" method="post">
@@ -25,3 +27,7 @@
 		<button type="submit">Submit</button>
 	</form>
 </div>
+<% if (!registerError.getError().equals("")) { %>
+	<p class="error-msg"><% out.println("Error: "+registerError.getError()); %></p>
+<% } %>
+<% registerError.setError(""); %>
