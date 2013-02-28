@@ -25,7 +25,7 @@
 		String postAuthor = dbManager.getBlogPostAuthor(blogID, postID);
 	
 		blogPage =
-			"<div id=\"blog-content-box\">"+
+			"<div id=\"blog-post-content-box\">"+
 				"<p id=\"blog-post-title\">"+postTitle+"</p>"+
 				"<p id=\"blog-post-date\">Posted on: "+postDate+"</p>"+
 				"<p id=\"blog-post-content\">"+postContent+"</p>"+

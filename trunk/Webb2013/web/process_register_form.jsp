@@ -4,21 +4,25 @@
     Author     : Josef
 --%>
 
-<jsp:useBean id="user" class="Bean.UserData" scope="session" />
-<jsp:setProperty name="user" property="*" />
-<jsp:useBean id="registerError" class="Bean.Error" scope="session" />
-
 <%@ page import="Logic.ProcessRegisterForm"
 				 import="java.io.*"
 				 import="java.util.*" 
 %>
 
+<jsp:useBean id="user" class="Bean.UserData" scope="session" />
+<jsp:setProperty name="user" property="*" />
+<jsp:useBean id="registerError" class="Bean.Error" scope="session" />
+
 <%
-	System.out.println("Process_Register.jsp: "+user.getUserID());
 	ProcessRegisterForm process = new ProcessRegisterForm();
 	
 	if (!process.isValidRegInput(user)) {
 		registerError.setError("UserID and/or Username already in use.");
+%>
+		<jsp:setProperty name="user" property="userid" value="" />
+		<jsp:setProperty name="user" property="username" value="" />
+		<jsp:setProperty name="user" property="password" value="" />
+<%
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?register=true");
 	} else {

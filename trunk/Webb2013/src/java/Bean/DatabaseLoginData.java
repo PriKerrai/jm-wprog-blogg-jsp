@@ -10,23 +10,23 @@ package Bean;
  */
 public class DatabaseLoginData {
     
-	private String databaseLogin = "";
-	private String databasePassword = "";
+	private String login = "";
+	private String password = "";
 
-  public void setDatabaseLogin(String login){
-		databaseLogin = login;
+  public void setLogin(String newLogin){
+		login = newLogin;
 	}
         
-  public void setDatabasePassword(String password){
-		databasePassword = password;
+  public void setPassword(String newPassword){
+		password = newPassword;
   }
             
-  public String getDatabaseLogin() {
-		return databaseLogin;
+  public String getLogin() {
+		return login;
 	}
         
-  public String getDatabasePassword() {
-		return databasePassword;
+  public String getPassword() {
+		return password;
 	}
         
 }

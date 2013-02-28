@@ -55,7 +55,6 @@ hr {
 
 
 /* WRAPPERS | SITE LAYOUT */
-
 #wrapper {
 	width: 60%;
 	height: 500px;
@@ -109,7 +108,6 @@ hr {
 
 
 /* NORTH AREA: TITLE + NAVIGATION BAR */
-
 #blog-title {
 	display: block;
 	font-size: 30px;
@@ -137,7 +135,6 @@ hr {
 
 
 /* BLOG POST */
-
 #blog-content-box {
 	margin: 40px 50px 0px 50px;
 }
@@ -157,7 +154,6 @@ hr {
 
 
 /* LOGIN FORM */
-
 #login-form-box {
 	margin: 40px 0px 0px 50px;
 	padding: 0;
@@ -177,7 +173,6 @@ hr {
 
 
 /* DATABASE LOGIN FORM */
-
 #dbtlogin-form-box {
 	margin: 40px 0px 0px 50px;
 	padding: 0;
@@ -188,13 +183,9 @@ hr {
 	font-size: 20px;
 	font-weight: bold;
 }
-#dbtlogin-form-text-box {
-	/*float: left;*/
-}
 
 
 /* REGISTER FORM */
-
 #register-form-box {
 	margin: 40px 0px 0px 50px;
 	padding: 0;
@@ -214,7 +205,6 @@ hr {
 
 
 /* CREATE BLOG FORM */
-
 #createblog-form-box {
 	margin: 40px 0px 0px 50px;
 	padding: 0;
@@ -227,6 +217,20 @@ hr {
 }
 
 
+/* CONTENT PAGE TITLE */
+h1.content-page-title {
+	margin: 40px 0px 30px 50px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+/* CONTENT MESSAGES */
+p.content-msg {
+	margin: 0px 0px 0px 50px;
+}
+
+
 /* FORM ERROR MESSAGES */
 p.error-msg {
 	margin: 0px 0px 0px 50px;
@@ -234,7 +238,6 @@ p.error-msg {
 
 
 /* FOOTER */
-
 #footer-content {
 	font-size: 12px;
 	text-align: center;

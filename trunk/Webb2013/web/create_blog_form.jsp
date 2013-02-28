@@ -5,7 +5,7 @@
 --%>
 
 <div id="createblog-form-box">
-	<p id="createblog-form-title">Create Blog</p>
+	<h1 id="createblog-form-title">Create Blog</h1>
   <form action="process_create_blog_form.jsp" method="post">
 		<div id="createblog-form-text-box">
 			Name your blog:

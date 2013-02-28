@@ -77,7 +77,8 @@ public class DBManager implements iDBManager {
     public DBManager() {
         
     }
-
+		
+		@Override
     public Connection connectDB(String username, String password) {
 			try {
 				Class.forName(DRIVER_PATH);
@@ -89,7 +90,7 @@ public class DBManager implements iDBManager {
 			} catch (Exception e) {
         System.out.println(e);
 			}
-        return null;
+      return null;
     }
 
     @Override
@@ -171,10 +172,9 @@ public class DBManager implements iDBManager {
 		@Override
 		public void registerUser(UserData user)
 		throws SQLException {
-			System.out.println("Register User: "+user.getUserID()+":"+user.getUsername()+":"+user.getPassword());
 			statement = connection.createStatement();
 			statement.executeUpdate(
-				INSERT_USER + "'" + user.getUserID() + "',"
+				INSERT_USER + "'" + user.getUserid() + "',"
 				+ "'" + user.getUsername() + "',"
 				+ "'" + user.getPassword() + "')"
 			);
@@ -207,22 +207,20 @@ public class DBManager implements iDBManager {
 			);
 			
 			if (result.next()) {
-				tmp.setUserID(result.getString("UserID"));
+				tmp.setUserid(result.getString("UserID"));
 				tmp.setUsername(result.getString("Username"));
 				tmp.setPassword(result.getString("Password"));
-				System.out.println("User Login ResultSet: "+result.getString("UserID")+":"+result.getString("Username")+":"+result.getString("Password"));
-				System.out.println("TMP: "+tmp.getUserID()+":"+tmp.getUsername()+":"+tmp.getPassword());
 			}
 			
 			return tmp;
 		}
     
-    public int getUserID(String username) throws SQLException {
-        int userID = -1;
+    public String getUserID(String username) throws SQLException {
+        String userID = "";
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_USER_ID + username + "'");
         while (result.next()) {
-            userID = result.getInt("UserID");
+            userID = result.getString("UserID");
         }
         return userID;
     }
