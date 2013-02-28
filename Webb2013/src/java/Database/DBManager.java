@@ -83,9 +83,6 @@ public class DBManager implements iDBManager {
 			try {
 				Class.forName(DRIVER_PATH);
 				connection = DriverManager.getConnection(DATABASE_PATH, username, password);
-				statement = connection.createStatement();
-				statement.executeUpdate("DROP TABLE JM_UserInformation");
-				statement.executeUpdate(CREATE_TABLE_USER);
 				return connection;
 			} catch (Exception e) {
         System.out.println(e);
