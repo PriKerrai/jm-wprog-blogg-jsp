@@ -5,13 +5,11 @@
 --%>
 
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
+<jsp:setProperty name="user" property="userid" value="" />
+<jsp:setProperty name="user" property="username" value="" />
+<jsp:setProperty name="user" property="password" value="" />
 
 <%
-	user.setUserID("");
-	user.setUsername("");
-	user.setPassword("");
-	
-	// Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", "index.jsp"); 
 %>

@@ -4,20 +4,24 @@
     Author     : Josef
 --%>
 
-<jsp:useBean id="userLogin" class="Bean.UserData" scope="session" />
-<jsp:setProperty name="userLogin" property="*" />
-<jsp:useBean id="loginError" class="Bean.Error" scope="session" />
-
 <%@ page import="Logic.ProcessLoginForm"
 				 import="java.io.*"
-				 import="java.util.*" 
+				 import="java.util.*"
 %>
+
+<jsp:useBean id="user" class="Bean.UserData" scope="session" />
+<jsp:setProperty name="user" property="*" />
+<jsp:useBean id="loginError" class="Bean.Error" scope="session" />
 
 <%
 	ProcessLoginForm process = new ProcessLoginForm();
-	userLogin = process.login(userLogin);
-	
-	if (userLogin.getUserID().equals("")) {
+	user = process.login(user);
+%>
+	<jsp:setProperty name="user" property="userid" value="<%= user.getUserid() %>" />
+	<jsp:setProperty name="user" property="username" value="<%= user.getUsername() %>" />
+	<jsp:setProperty name="user" property="password" value="<%= user.getPassword() %>" />
+<%
+	if (user.getUserid().equals("")) {
 		loginError.setError("Invalid username or password.");
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?login=true");

@@ -7,7 +7,7 @@
 <jsp:useBean id="loginError" class="Bean.Error" scope="session" />
 
 <div id="login-form-box">
-	<p id="login-form-title">Login</p>
+	<h1 id="login-form-title">Login</h1>
 	<form action="process_login_form.jsp" method="post">
 		<div id="login-form-text-box">
 			Username: 

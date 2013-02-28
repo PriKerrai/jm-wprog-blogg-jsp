@@ -7,6 +7,7 @@ package Logic;
 import Bean.DatabaseLoginData;
 import Database.DBManager;
 import Interface.iDBManager;
+import java.sql.Connection;
 
 /**
  *
@@ -16,8 +17,15 @@ public class ProcessDatabaseLogin {
     
     private iDBManager dbManager = new DBManager();
 
-    public ProcessDatabaseLogin(DatabaseLoginData database) {
-			dbManager.connectDB(database.getDatabaseLogin(), database.getDatabasePassword());
+    public ProcessDatabaseLogin() {
+			
+		}
+		
+		public boolean connect(DatabaseLoginData database) {
+			Connection connection = dbManager.connectDB(database.getLogin(), database.getPassword());
+			if (connection == null)
+				return false;
+			return true;
 		}
 
 }

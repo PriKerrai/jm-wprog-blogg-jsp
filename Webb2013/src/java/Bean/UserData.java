@@ -11,7 +11,7 @@ public class UserData {
 	private String username = "";
 	private String password = "";
 	
-	public void setUserID(String newID) {
+	public void setUserid(String newID) {
 		userid = newID;
 	}
 	
@@ -23,7 +23,7 @@ public class UserData {
 		password = newPass;
 	}
 	
-	public String getUserID() {
+	public String getUserid() {
 		return userid;
 	}
 	

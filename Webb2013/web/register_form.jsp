@@ -7,7 +7,7 @@
 <jsp:useBean id="registerError" class="Bean.Error" scope="session" />
 
 <div id="register-form-box">
-	<p id="register-form-title">Register</p>
+	<h1 id="register-form-title">Register</h1>
 	<form action="process_register_form.jsp" method="post">
 		<div id="register-form-text-box">
 			UserID:
