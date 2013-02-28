@@ -7,12 +7,12 @@ package Bean;
  */
 public class UserData {
 	
-	private String userID = "";
+	private String userid = "";
 	private String username = "";
 	private String password = "";
 	
 	public void setUserID(String newID) {
-		userID = newID;
+		userid = newID;
 	}
 	
 	public void setUsername(String newName) {
@@ -24,7 +24,7 @@ public class UserData {
 	}
 	
 	public String getUserID() {
-		return userID;
+		return userid;
 	}
 	
 	public String getUsername() {

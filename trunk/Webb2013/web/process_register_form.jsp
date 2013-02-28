@@ -5,7 +5,7 @@
 --%>
 
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
-<jsp:setProperty name="user" property="*"/>
+<jsp:setProperty name="user" property="*" />
 <jsp:useBean id="registerError" class="Bean.Error" scope="session" />
 
 <%@ page import="Logic.ProcessRegisterForm"
@@ -14,7 +14,9 @@
 %>
 
 <%
+	System.out.println("Process_Register.jsp: "+user.getUserID());
 	ProcessRegisterForm process = new ProcessRegisterForm();
+	
 	if (!process.isValidRegInput(user)) {
 		registerError.setError("UserID and/or Username already in use.");
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
@@ -22,6 +24,6 @@
 	} else {
 		process.registerUser(user);
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		response.setHeader("Location", "index.jsp");
+		response.setHeader("Location", "index.jsp?register=success");
 	}
 %>

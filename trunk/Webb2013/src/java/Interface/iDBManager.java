@@ -26,11 +26,14 @@ public abstract interface iDBManager {
 	
   public abstract Connection connectDB(String username, String password);
 	
-	public abstract boolean isValidLogin(String username, String password) throws SQLException;
+	public abstract boolean isValidLogin(String username, String password)
+	throws SQLException;
 	
-	public abstract UserData userLogin(String username, String password);
+	public abstract UserData userLogin(String username, String password)
+	throws SQLException;
 	
-	public abstract boolean isValidRegInput(String userID, String username) throws SQLException;
+	public abstract boolean isValidRegInput(String userID, String username)
+	throws SQLException;
 	
 	public abstract void registerUser(UserData user) throws SQLException;
 
