@@ -159,7 +159,8 @@ public class DBManager implements iDBManager {
 			statement = connection.createStatement();
       ResultSet result = statement.executeQuery(
 				GET_USER + "UserID = '" + userID + "'" +
-				"OR Username = '" + username + "'");
+				"OR Username = '" + username + "'"
+			);
 			
 			if (result.next())
 				return false;
