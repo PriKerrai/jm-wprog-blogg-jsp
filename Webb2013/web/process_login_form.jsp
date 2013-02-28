@@ -4,8 +4,8 @@
     Author     : Josef
 --%>
 
-<jsp:useBean id="user" class="Bean.UserData" scope="session" />
-<jsp:setProperty name="user" property="*"/>
+<jsp:useBean id="userLogin" class="Bean.UserData" scope="session" />
+<jsp:setProperty name="userLogin" property="*" />
 <jsp:useBean id="loginError" class="Bean.Error" scope="session" />
 
 <%@ page import="Logic.ProcessLoginForm"
@@ -15,14 +15,14 @@
 
 <%
 	ProcessLoginForm process = new ProcessLoginForm();
-	user = process.login(user);
+	userLogin = process.login(userLogin);
 	
-	if (user.getUserID() == "") {
+	if (userLogin.getUserID().equals("")) {
 		loginError.setError("Invalid username or password.");
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?login=true");
 	} else {
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
-		response.setHeader("Location", "index.jsp");
+		response.setHeader("Location", "index.jsp?login=success");
 	}
 %>
