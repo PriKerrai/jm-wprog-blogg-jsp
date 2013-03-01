@@ -6,6 +6,9 @@ package Logic;
 
 import Bean.BlogPost;
 import Bean.UserData;
+import Database.DBManager;
+import Interface.iDBManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,8 +16,11 @@ import Bean.UserData;
  */
 public class ProcessNewBlogPost {
     
-    public ProcessNewBlogPost(BlogPost blogPost, UserData user) {
-        System.out.println("Rubrik" + blogPost.getBlogHeadline() + "Text" + blogPost.getBlogText() + "Användare" + user.getUsername());
+    private iDBManager dbManager = new DBManager();
+    
+    public ProcessNewBlogPost(BlogPost blogPost, UserData user) throws SQLException {
+        dbManager.registerNewBlogMessage(blogPost, user);
+        System.out.println("Rubrik: " + blogPost.getBlogHeadline() + "Text: " + blogPost.getBlogText() + "Användare: " + user.getUsername());
     }
     
 }
