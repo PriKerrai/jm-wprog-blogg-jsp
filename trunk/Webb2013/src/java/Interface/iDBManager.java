@@ -7,6 +7,8 @@ package Interface;
 import Bean.UserData;
 import java.sql.Connection;
 import java.sql.SQLException;
+import Bean.BlogPost;
+import java.util.Date;
 
 /**
  *
@@ -36,5 +38,11 @@ public abstract interface iDBManager {
 	throws SQLException;
 	
 	public abstract void registerUser(UserData user) throws SQLException;
+        
+        public abstract void registerNewBlogMessage(BlogPost blogPost, UserData user) throws SQLException;
+        
+        public abstract Date getCurrentDate(); 
+        
+        public abstract int getMaxBlogID() throws SQLException;
 
 }

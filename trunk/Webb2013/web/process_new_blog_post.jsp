@@ -4,8 +4,8 @@
     Author     : Kerrai
 --%>
 
-<jsp:useBean id="createBlog" class="Bean.BlogPost" scope="session" >
-<jsp:setProperty name="createBlog" property="*" />
+<jsp:useBean id="newblogentry" class="Bean.BlogPost" scope="session" >
+<jsp:setProperty name="newblogentry" property="*" />
 </jsp:useBean>
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 
@@ -15,7 +15,7 @@
 %>
 
 <%
-	ProcessNewBlogPost process = new ProcessNewBlogPost(createBlog, user);
+	ProcessNewBlogPost process = new ProcessNewBlogPost(newblogentry, user);
 	
         // Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);

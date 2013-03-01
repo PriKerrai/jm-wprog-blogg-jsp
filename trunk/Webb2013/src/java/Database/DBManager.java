@@ -4,6 +4,7 @@
  */
 package Database;
 
+import Bean.BlogPost;
 import Bean.UserData;
 import Interface.iDBManager;
 import java.sql.Connection;
@@ -11,6 +12,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,26 +30,23 @@ public class DBManager implements iDBManager {
     private static final String DRIVER_PATH = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String DATABASE_PATH = "jdbc:sqlserver://idasql-db.hb.se:56077;"
             + "databaseName=dbtht1204;selectMethod=cursor";
-    
     //USER
-		private static final String GET_USER = "SELECT * FROM JM_UserInformation WHERE ";
+    private static final String GET_USER = "SELECT * FROM JM_UserInformation WHERE ";
     private static final String GET_USER_ID = "SELECT UserID FROM JM_UserInformation WHERE Username = '";
     private static final String GET_USERNAME = "SELECT Username FROM JM_UserInformation WHERE UserID = '";
     private static final String GET_PASSWORD = "SELECT Password FROM JM_UserInformation WHERE UserID = '";
-		
-		private static final String INSERT_USER = "INSERT INTO JM_UserInformation VALUES (";
-    
+    private static final String INSERT_USER = "INSERT INTO JM_UserInformation VALUES (";
     //BLOGG
-    private static final String GET_BLOGG_ID = "SELECT BloggID FROM JM_BloggInformation WHERE UserID = '";
-    private static final String GET_BLOGG_HEADER = "SELECT BloggHeader FROM JM_BloggInformation WHERE BloggID = '";
-    private static final String GET_BLOGG_POST_DATE = "SELECT BloggPostDate FROM JM_BloggInformation WHERE BloggID = '";
-    private static final String GET_BLOGG_TEXT = "SELECT BloggText FROM JM_BloggInformation WHERE BloggID = '";
-    
+    private static final String GET_BLOG_ID = "SELECT BloggID FROM JM_BlogPost WHERE UserID = '";
+    private static final String GET_MAX_BLOG_ID = "SELECT TOP(1) BlogID FROM JM_BlogPost ORDER BY AdID DESC";
+    private static final String GET_BLOG_HEADLINE = "SELECT BloggHeader FROM JM_BlogPost WHERE BloggID = '";
+    private static final String GET_BLOG_POST_DATE = "SELECT BloggPostDate FROM JM_BlogPost WHERE BloggID = '";
+    private static final String GET_BLOG_TEXT = "SELECT BloggText FROM JM_BlogPost WHERE BloggID = '";
+    private static final String INSERT_BLOG = "INSERT INTO JM_BlogPost VALUES (";
     //COMMENT
-    private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BloggComment WHERE TODO = '";
-    private static final String GET_COMMENT_POST_DATE = "SELECT CommentPostDate FROM JM_BloggComment WHERE TODO = '";
-    private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BloggComment WHERE TODO = '";
-    
+    private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE TODO = '";
+    private static final String GET_COMMENT_POST_DATE = "SELECT CommentPostDate FROM JM_BlogComment WHERE TODO = '";
+    private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BlogComment WHERE TODO = '";
     // User Table
     private static final String CREATE_TABLE_USER =
             "CREATE TABLE JM_UserInformation("
@@ -48,46 +54,44 @@ public class DBManager implements iDBManager {
             + "Username VARCHAR(30) NOT NULL,"
             + "Password VARCHAR(30) NOT NULL,"
             + "PRIMARY KEY(UserID))";
-    
     // Blogg Table
     private static final String CREATE_TABLE_BLOG =
-            "CREATE TABLE JM_BlogInformation("
-            + "BloggID SMALLINT NOT NULL,"
-            + "BloggHeader VARCHAR(50) NOT NULL,"
-            + "BloggPostDate SMALLINT NOT NULL,"  //Date??
-            + "UserID SMALLINT NOT NULL,"
-            + "BloggText VARCHAR(5000) NOT NULL,"
-            + "PRIMARY KEY(UserID),"  //UserID och BloggId??
-            + "FOREIGN KEY(UserID) references UserInformation(UserID)";  //Bah, memory of databases is bad ;p och skall nog inte se ut så här
+            "CREATE TABLE JM_BlogPost("
+            + "BlogID SMALLINT NOT NULL,"
+            + "BlogHeader VARCHAR(100) NOT NULL,"
+            + "BlogText VARCHAR(5000) NOT NULL,"
+            + "BlogPostDate Date NOT NULL,"
+            + "UserID VARCHAR(30) NOT NULL,"
+            + "PRIMARY KEY(UserID),"
+            + "PRIMART KEY(BlogID),"
+            + "FOREIGN KEY(UserID) references JM_UserInformation(UserID))"; 
     
     // Comment Table
     private static final String CREATE_TABLE_COMMENT =
-            "CREATE TABLE JM_BloggComment("
+            "CREATE TABLE JM_BlogComment("
             + "UserID SMALLINT NOT NULL,"
-            + "BloggID SMALLINT NOT NULL,"
+            + "BlogID SMALLINT NOT NULL,"
             + "CommentPostDate Date NOT NULL,"
             + "CommentID SMALLINT NOT NULL,"
             + "CommentText VARCHAR(500) NOT NULL,"
-            + "PRIMARY KEY(UserID),"  // BloggID + UserID i wonder? 
-            + "FOREIGN KEY(UserID) references UserInformation(UserID))";
-    
+            + "PRIMARY KEY(UserID)," 
+            + "FOREIGN KEY(UserID) references JM_UserInformation(UserID))";
     private static Connection connection;
     private Statement statement;
-    
-    public DBManager() {
-        
+
+    public DBManager()  {
     }
-		
-		@Override
+
+    @Override
     public Connection connectDB(String username, String password) {
-			try {
-				Class.forName(DRIVER_PATH);
-				connection = DriverManager.getConnection(DATABASE_PATH, username, password);
-				return connection;
-			} catch (Exception e) {
-        System.out.println(e);
-			}
-      return null;
+        try {
+            Class.forName(DRIVER_PATH);
+            connection = DriverManager.getConnection(DATABASE_PATH, username, password);
+            return connection;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
     @Override
@@ -150,68 +154,80 @@ public class DBManager implements iDBManager {
     public String getUserPassword() {
         return "password";
     }
-		
-		@Override
-		public boolean isValidRegInput(String userID, String username)
-		throws SQLException {
-			statement = connection.createStatement();
-      ResultSet result = statement.executeQuery(
-				GET_USER + "UserID = '" + userID + "'" +
-				"OR Username = '" + username + "'"
-			);
-			
-			if (result.next())
-				return false;
-			
-			return true;
-		}
-		
-		@Override
-		public void registerUser(UserData user)
-		throws SQLException {
-			statement = connection.createStatement();
-			statement.executeUpdate(
-				INSERT_USER + "'" + user.getUserid() + "',"
-				+ "'" + user.getUsername() + "',"
-				+ "'" + user.getPassword() + "')"
-			);
-		}
-		
-		@Override
-		public boolean isValidLogin(String username, String password)
-		throws SQLException {
-			statement = connection.createStatement();
-      ResultSet result = statement.executeQuery(
-				GET_USER + "Username = '" + username + "'"
-				+ "AND Password = '" + password + "'"
-			);
-			
-			if (!result.next())
-				return false;
-			
-			return true;
-		}
-		
-		@Override
-		public UserData userLogin(String username, String password)
-		throws SQLException {
-			UserData tmp = new UserData();
-			
-			statement = connection.createStatement();
-			ResultSet result = statement.executeQuery(
-				GET_USER + "Username = '" + username + "'"
-				+ "AND Password = '" + password + "'"
-			);
-			
-			if (result.next()) {
-				tmp.setUserid(result.getString("UserID"));
-				tmp.setUsername(result.getString("Username"));
-				tmp.setPassword(result.getString("Password"));
-			}
-			
-			return tmp;
-		}
-    
+
+    @Override
+    public boolean isValidRegInput(String userID, String username)
+            throws SQLException {
+        statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(
+                GET_USER + "UserID = '" + userID + "'"
+                + "OR Username = '" + username + "'");
+
+        if (result.next()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public void registerUser(UserData user)
+            throws SQLException {
+
+        statement = connection.createStatement();
+        statement.executeUpdate(
+                INSERT_USER + "'" + user.getUserid() + "',"
+                + "'" + user.getUsername() + "',"
+                + "'" + user.getPassword() + "')");
+    }
+
+    @Override
+    public void registerNewBlogMessage(BlogPost blogPost, UserData user) throws SQLException {
+        statement = connection.createStatement();
+        statement.executeUpdate(
+                INSERT_BLOG + "'" + getMaxBlogID() + "',"
+                + "'" + blogPost.getBlogHeadline() + "',"
+                + "'" + blogPost.getBlogText() + "',"
+                + "'" + getCurrentDate() + "',"
+                + "'" + user.getUserid() + "')");
+
+    }
+
+
+    @Override
+    public boolean isValidLogin(String username, String password)
+            throws SQLException {
+        statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(
+                GET_USER + "Username = '" + username + "'"
+                + "AND Password = '" + password + "'");
+
+        if (!result.next()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public UserData userLogin(String username, String password)
+            throws SQLException {
+        UserData tmp = new UserData();
+
+        statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(
+                GET_USER + "Username = '" + username + "'"
+                + "AND Password = '" + password + "'");
+
+        if (result.next()) {
+            tmp.setUserid(result.getString("UserID"));
+            tmp.setUsername(result.getString("Username"));
+            tmp.setPassword(result.getString("Password"));
+        }
+
+        return tmp;
+    }
+
     public String getUserID(String username) throws SQLException {
         String userID = "";
         statement = connection.createStatement();
@@ -221,7 +237,7 @@ public class DBManager implements iDBManager {
         }
         return userID;
     }
-    
+
     public String getUsername(String userID) throws SQLException {
         String username = "";
         statement = connection.createStatement();
@@ -231,7 +247,7 @@ public class DBManager implements iDBManager {
         }
         return username;
     }
-    
+
     public char[] getPassword(String userID) throws SQLException {
         String password = "";
         statement = connection.createStatement();
@@ -241,5 +257,28 @@ public class DBManager implements iDBManager {
         }
         char[] charPassword = password.toCharArray();
         return charPassword;
+    }
+
+    @Override
+    public Timestamp getCurrentDate() {
+
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Timestamp timeStamp = new java.sql.Timestamp(calendar.getTime().getTime());
+        return timeStamp;
+        
+    }
+    
+        public int getMaxBlogID() {
+        int count = 0;
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(GET_MAX_BLOG_ID);
+            while (resultSet.next()) {
+                count = resultSet.getInt("BlogID");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return count + 1;
     }
 }
