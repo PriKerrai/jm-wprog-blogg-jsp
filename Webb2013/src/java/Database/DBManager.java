@@ -4,6 +4,8 @@
  */
 package Database;
 
+import Bean.BlogComment;
+import Bean.BlogData;
 import Bean.BlogPost;
 import Bean.UserData;
 import Interface.iDBManager;
@@ -47,6 +49,7 @@ public class DBManager implements iDBManager {
     private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE TODO = '";
     private static final String GET_COMMENT_POST_DATE = "SELECT CommentPostDate FROM JM_BlogComment WHERE TODO = '";
     private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BlogComment WHERE TODO = '";
+    private static final String INSERT_COMMENT = "INSERT INTO JM_BlogComment VALUES (";
     // User Table
     private static final String CREATE_TABLE_USER =
             "CREATE TABLE JM_UserInformation("
@@ -192,6 +195,18 @@ public class DBManager implements iDBManager {
                 + "'" + user.getUserid() + "')");
 
     }
+    
+    @Override
+    public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment) throws SQLException {
+        statement = connection.createStatement();
+        statement.executeUpdate(
+                INSERT_COMMENT + "'" + getCommentID() + "',"
+                + "'" + blogComment.getBlogComment() + "',"
+                + "'" + getCurrentDate() + "',"
+                + "'" + user.getUserid() + "',"
+                + "'" + blogData.getBlogID() + "')");
+
+    }
 
 
     @Override
@@ -267,6 +282,12 @@ public class DBManager implements iDBManager {
         return timeStamp;
         
     }
+    
+    public int getCommentID() {
+        //Fetch the current highest comment ID on the blog you are visiting.
+        return 1;
+    }
+    
     
         public int getMaxBlogID() {
         int count = 0;
