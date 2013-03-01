@@ -4,6 +4,8 @@
  */
 package Interface;
 
+import Bean.BlogComment;
+import Bean.BlogData;
 import Bean.UserData;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -40,6 +42,8 @@ public abstract interface iDBManager {
 	public abstract void registerUser(UserData user) throws SQLException;
         
         public abstract void registerNewBlogMessage(BlogPost blogPost, UserData user) throws SQLException;
+        
+        public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment) throws SQLException;
         
         public abstract Date getCurrentDate(); 
         

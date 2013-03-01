@@ -252,7 +252,7 @@ div.clear {
 }
 
 /* Create Blog Post */
-#commentBox {
+#blogPost {
      display: block;
      width: 500px;
      height: 300px;
@@ -275,3 +275,22 @@ div.clear {
 	line-height: 30px;
 	width: 60%;
 }
+
+/* Blog Comment */
+#blogPost {
+     display: block;
+     width: 300;
+     height: 150px;
+     padding: 8px;
+     border: #666 solid 1px;
+     line-height: 130%;
+     font-size: 13px;
+     margin: 0px 0px 0px 10px;
+     background-color: #444;
+}
+
+#blog-comment-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
