@@ -15,11 +15,11 @@ import java.sql.SQLException;
  *
  * @author Kerrai
  */
-public class ProcessBlogComment {
+public class ProcessBlogCommentForm {
     
      private iDBManager dbManager = new DBManager();
      
-     public ProcessBlogComment(UserData userData, BlogData blogData, BlogComment blogComment) throws SQLException {
+     public ProcessBlogCommentForm(UserData userData, BlogData blogData, BlogComment blogComment) throws SQLException {
          
          dbManager.registerNewBlogComment(blogData, userData, blogComment);
          
