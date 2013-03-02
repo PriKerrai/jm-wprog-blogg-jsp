@@ -251,6 +251,7 @@ public class DBManager implements iDBManager {
 						tmp.setUseralias(result.getString("UserAlias"));
             tmp.setUsername(result.getString("Username"));
             tmp.setPassword(result.getString("Password"));
+						tmp.setBlog(result.getString("Blog"));
         }
 
         return tmp;

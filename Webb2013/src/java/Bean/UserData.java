@@ -11,6 +11,7 @@ public class UserData {
 	private String useralias = "";
 	private String username = "";
 	private String password = "";
+	private String blog = "";
 	
 	public void setUserid(int newID) {
 		userid = newID;
@@ -26,6 +27,10 @@ public class UserData {
 	
 	public void setPassword(String newPass) {
 		password = newPass;
+	}
+	
+	public void setBlog(String newBlog) {
+		blog = newBlog;
 	}
 	
 	public int getUserid() {
@@ -44,4 +49,7 @@ public class UserData {
 		return password;
 	}
 	
+	public String getBlog() {
+		return blog;
+	}
 }

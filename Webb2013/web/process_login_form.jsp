@@ -21,6 +21,7 @@
 	<jsp:setProperty name="user" property="useralias" value="<%= user.getUseralias() %>" />
 	<jsp:setProperty name="user" property="username" value="<%= user.getUsername() %>" />
 	<jsp:setProperty name="user" property="password" value="<%= user.getPassword() %>" />
+	<jsp:setProperty name="user" property="blog" value="<%= user.getBlog() %>" />
 <%
 	if (user.getUserid() == -1) {
 		loginError.setError("Invalid username or password.");
