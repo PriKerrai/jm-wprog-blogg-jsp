@@ -20,6 +20,12 @@ input {
 	border: #666 solid 1px;
 }
 
+textarea {
+	font-size: 12px;
+	border: #666 solid 1px;
+	background-color: #444;
+}
+
 button {
 	color: white;
 	background: #555;
@@ -57,7 +63,7 @@ hr {
 /* WRAPPERS | SITE LAYOUT */
 #wrapper {
 	width: 60%;
-	height: 500px;
+	min-height: 500px;
 	margin: 50px auto;
 }
 #center-wrapper {
@@ -88,19 +94,20 @@ hr {
 	padding: 10px 0px 10px 0px;
 }
 #wrapper-west {
-	/*width: 20%;*/
+	/*width: 20%;
 	height: 100%;
-	float: left;
+	float: left;*/
 }
 #wrapper-center {
 	width: 70%;
 	height: 100%;
+	margin: 0px 0px 50px 0px;
 	float: left;
 }
 #wrapper-east {
 	width: 30%;
 	height: 100%;
-	float: left;
+	float: right;
 }
 #wrapper-south {
 	width: 100%;
@@ -135,7 +142,7 @@ hr {
 
 
 /* BLOG POST */
-#blog-content-box {
+#blog-post-content-box {
 	margin: 40px 50px 0px 50px;
 }
 #blog-post-title {
@@ -150,6 +157,21 @@ hr {
 }
 #blog-post-author {
 	font-size: 12px;
+}
+
+
+/* BLOG POST COMMENT */
+#comments-box{
+	margin: 0px 0px 0px 50px;
+	padding: 0;
+}
+#comments-box-title {
+	font-size: 16px;
+	font-weight: bold;
+}
+#comment-textarea {
+	width: 300px;
+	height: 100px;
 }
 
 
@@ -217,6 +239,26 @@ hr {
 }
 
 
+/* CREATE BLOG POST */
+#blogpost-form-box {
+	margin: 40px 0px 0px 50px;
+	padding: 0;
+	line-height: 30px;
+	width: 50%;
+}
+#blogpost-form-title {
+	font-size: 20px;
+	font-weight: bold;
+}
+#blogpost-form-headline-input {
+	width: 304px;
+}
+#blogpost-form-textarea {
+	width: 300px;
+	height: 200px;
+}
+
+
 /* CONTENT PAGE TITLE */
 h1.content-page-title {
 	margin: 40px 0px 30px 50px;
@@ -250,47 +292,3 @@ p.error-msg {
 div.clear {
 	clear: both;
 }
-
-/* Create Blog Post */
-#blogPost {
-     display: block;
-     width: 500px;
-     height: 300px;
-     padding: 8px;
-     border: #666 solid 1px;
-     line-height: 130%;
-     font-size: 13px;
-     margin: 0px 0px 0px 10px;
-     background-color: #444;
-}
-
-#blog-post-title {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#blog-post-box {
-	margin: 0px 0px 0px 10px;
-	padding: 0;
-	line-height: 30px;
-	width: 60%;
-}
-
-/* Blog Comment */
-#blogPost {
-     display: block;
-     width: 300;
-     height: 150px;
-     padding: 8px;
-     border: #666 solid 1px;
-     line-height: 130%;
-     font-size: 13px;
-     margin: 0px 0px 0px 10px;
-     background-color: #444;
-}
-
-#blog-comment-title {
-    font-size: 16px;
-    font-weight: bold;
-}
-

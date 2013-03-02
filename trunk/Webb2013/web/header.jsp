@@ -24,7 +24,7 @@
 			<li><a href="?dbtlogin=true">Dbt Login</a></li>
 		<% } %>
 		<% if(user.getUserid() != "") { %>
-			<li> <a href="?newBlogPost=true">New blog post</a></li>
+			<li> <a href="?createpost=true">New blog post</a></li>
     <% } %>
 		<% if(user.getUserid() != "") { %>
 			<li id="nav-bar-createblog"><a href="?createblog=true">Create Blog</a></li>
