@@ -44,9 +44,9 @@
 			<br/>
 			<jsp:include page="blog_post_comments.jsp" />
 		<% } %>
-	<% } //else
-		// Lista alla bloggar som finns registrerade i systemet?
-	%>
+	<% } else { %>
+		<jsp:include page="blog_list.jsp" />
+	<% } %>
 </div>
 <div id="wrapper-east">
     <jsp:include page="sidebar.jsp" />
