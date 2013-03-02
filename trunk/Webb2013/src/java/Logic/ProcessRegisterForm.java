@@ -19,7 +19,7 @@ public class ProcessRegisterForm {
 	}
 	
 	public boolean isValidRegInput(UserData user) throws SQLException {
-		return dbManager.isValidRegInput(user.getUserid(), user.getUsername());
+		return dbManager.isValidRegInput(user.getUseralias(), user.getUsername());
 	}
 	
 	public void registerUser(UserData user) throws SQLException {

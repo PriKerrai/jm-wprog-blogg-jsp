@@ -4,7 +4,7 @@
     Author     : Kerrai
 --%>
 
-<jsp:useBean id="newblogentry" class="Bean.BlogPost" scope="session" >
+<jsp:useBean id="newBlogPost" class="Bean.BlogPost" scope="session" >
 <jsp:setProperty name="newblogentry" property="*" />
 </jsp:useBean>
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
@@ -15,7 +15,7 @@
 %>
 
 <%
-	ProcessNewBlogPostForm process = new ProcessNewBlogPostForm(newblogentry, user);
+	ProcessNewBlogPostForm process = new ProcessNewBlogPostForm(newBlogPost, user);
 	
         // Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);

@@ -18,10 +18,11 @@
 	user = process.login(user);
 %>
 	<jsp:setProperty name="user" property="userid" value="<%= user.getUserid() %>" />
+	<jsp:setProperty name="user" property="useralias" value="<%= user.getUseralias() %>" />
 	<jsp:setProperty name="user" property="username" value="<%= user.getUsername() %>" />
 	<jsp:setProperty name="user" property="password" value="<%= user.getPassword() %>" />
 <%
-	if (user.getUserid().equals("")) {
+	if (user.getUserid() == -1) {
 		loginError.setError("Invalid username or password.");
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?login=true");

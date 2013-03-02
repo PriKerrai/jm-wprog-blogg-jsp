@@ -10,15 +10,15 @@
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:useBean id="blogData" class="Bean.BlogData" scope="session" />
 
-<%@ page import="Logic.ProcessBlogComment"
+<%@ page import="Logic.ProcessBlogCommentForm"
 				 import="java.io.*"
 				 import="java.util.*" 
 %>
 
 <%
-	ProcessBlogComment process = new ProcessBlogComment(user, blogData, blogComment);
+	ProcessBlogCommentForm process = new ProcessBlogCommentForm(user, blogData, blogComment);
 	
-        // Redirect user back to index
+  // Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", "index.jsp"); 
 %>

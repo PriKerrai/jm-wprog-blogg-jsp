@@ -18,15 +18,52 @@ import java.util.Date;
  */
 public abstract interface iDBManager {
 	
-	public abstract int getLatestBlogPost(int blogID);
+	/*
+	 * General note:
+	 * BlogID is the same as UserID, just renamed to make sence in its context.
+	 */
 	
-	public abstract String getBlogPostTitle(int blogID, int postID);
+	public abstract int getNumberOfBlogs()
+	throws SQLException;
 	
-	public abstract String getBlogPostContent(int blogID, int postID);
+	public abstract int[] getAllBlogID()
+	throws SQLException;
 	
-	public abstract String getBlogPostDate(int blogID, int postID);
+	public abstract String getBlogName(int blogID)
+	throws SQLException;
 	
-	public abstract String getBlogPostAuthor(int blogID, int postID);
+	public abstract String[] getAllBlogNames()
+	throws SQLException;
+	
+	public abstract int getNumberOfPosts(int blogID)
+	throws SQLException;
+	
+	public abstract int[] getAllBlogPostID(int blogID)
+	throws SQLException;
+	
+	public abstract String[] getAllBlogPosts(int blogID)
+	throws SQLException;
+	
+	public abstract String getBlogPostTitle(int blogID, int postID)
+	throws SQLException;
+	
+	public abstract String getBlogPostContent(int blogID, int postID)
+	throws SQLException;
+	
+	public abstract String getBlogPostDate(int blogID, int postID)
+	throws SQLException;
+	
+	public abstract String getBlogPostAuthor(int blogID, int postID)
+	throws SQLException;
+	
+	public abstract int getMaxBlogPostID(int blogID) 
+	throws SQLException;
+	
+	public abstract void registerNewBlogPost(BlogPost blogPost, UserData user)
+	throws SQLException;
+        
+	public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment)
+	throws SQLException;
 	
   public abstract Connection connectDB(String username, String password);
 	
@@ -36,17 +73,11 @@ public abstract interface iDBManager {
 	public abstract UserData userLogin(String username, String password)
 	throws SQLException;
 	
-	public abstract boolean isValidRegInput(String userID, String username)
+	public abstract boolean isValidRegInput(String useralias, String username)
 	throws SQLException;
 	
 	public abstract void registerUser(UserData user) throws SQLException;
-        
-        public abstract void registerNewBlogMessage(BlogPost blogPost, UserData user) throws SQLException;
-        
-        public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment) throws SQLException;
-        
-        public abstract Date getCurrentDate(); 
-        
-        public abstract int getMaxBlogID() throws SQLException;
+
+	public abstract Date getCurrentDate(); 
 
 }

@@ -7,12 +7,17 @@
 <%@ page import="Logic.BlogInfo" %>
 
 <%
-	//BlogInfo blogInfo = new BlogInfo();
-	//String[] blogList = blogList.getBlogList();
+	BlogInfo blogInfo = new BlogInfo();
+	int[] idList = blogInfo.getAllBlogID();
+	String[] blogList = blogInfo.getBlogList();
 %>
 <div id="blog-list-box">
+	<h1 class="content-page-title">Registered Blogs</h1>
 	<%
-		//for (int i = 0; i < list.length; i++)
-			//out.println("<a href=\"index.jsp?blogid="+i+"\">"+list[i]+"</a>");
+		if (blogList.length > 0) {
+			for (int i = 0; i < blogList.length; i++)
+				out.println("<a href=\"index.jsp?blogid="+idList[i]+"\">"+blogList[i]+"</a>");
+		} else
+			out.println("<p class=\"content-msg\">There are currently no registered blogs.</p>");
 	%>
 </div>
