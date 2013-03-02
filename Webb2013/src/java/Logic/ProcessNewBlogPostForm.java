@@ -14,11 +14,11 @@ import java.sql.SQLException;
  *
  * @author Kerrai
  */
-public class ProcessNewBlogPost {
+public class ProcessNewBlogPostForm {
     
     private iDBManager dbManager = new DBManager();
     
-    public ProcessNewBlogPost(BlogPost blogPost, UserData user) throws SQLException {
+    public ProcessNewBlogPostForm(BlogPost blogPost, UserData user) throws SQLException {
         dbManager.registerNewBlogMessage(blogPost, user);
         System.out.println("Rubrik: " + blogPost.getBlogHeadline() + "Text: " + blogPost.getBlogText() + "Användare: " + user.getUsername());
     }
