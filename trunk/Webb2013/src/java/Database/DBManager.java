@@ -41,17 +41,17 @@ public class DBManager implements iDBManager {
     private static final String INSERT_USER = "INSERT INTO JM_UserInformation VALUES (";
     
 		//BLOGG
-    private static final String GET_BLOG_ID = "SELECT BloggID FROM JM_BlogPost WHERE UserID = '";
-    private static final String GET_MAX_BLOG_ID = "SELECT TOP(1) BlogID FROM JM_BlogPost ORDER BY BlogID DESC";
-    private static final String GET_BLOG_HEADLINE = "SELECT BloggHeader FROM JM_BlogPost WHERE BloggID = '";
-    private static final String GET_BLOG_POST_DATE = "SELECT BloggPostDate FROM JM_BlogPost WHERE BloggID = '";
-    private static final String GET_BLOG_TEXT = "SELECT BloggText FROM JM_BlogPost WHERE BloggID = '";
+    private static final String GET_BLOG_POST_ID = "SELECT BlogPostID FROM JM_BlogPost WHERE UserID = '";
+    private static final String GET_MAX_BLOG_ID = "SELECT TOP(1) BlogPostID FROM JM_BlogPost ORDER BY BlogPostID DESC";
+    private static final String GET_BLOG_POST_HEADER = "SELECT BlogPostHeader FROM JM_BlogPost WHERE BlogPostID = '";
+    private static final String GET_BLOG_POST_DATE = "SELECT BlogPostDate FROM JM_BlogPost WHERE BlogPostID = '";
+    private static final String GET_BLOG_POST_TEXT = "SELECT BlogText FROM JM_BlogPost WHERE BlogPostID = '";
     private static final String INSERT_BLOG = "INSERT INTO JM_BlogPost VALUES (";
     
 		//COMMENT
-    private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE TODO = '";
-    private static final String GET_COMMENT_POST_DATE = "SELECT CommentPostDate FROM JM_BlogComment WHERE TODO = '";
-    private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BlogComment WHERE TODO = '";
+    private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE BlogPostID = '";
+    private static final String GET_COMMENT_DATE = "SELECT CommentDate FROM JM_BlogComment WHERE BlogPostID = '";
+    private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BlogComment WHERE BlogPostID = '";
     private static final String INSERT_COMMENT = "INSERT INTO JM_BlogComment VALUES (";
     
 		// User Table
