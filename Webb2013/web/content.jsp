@@ -36,18 +36,19 @@
 		<% } %>
 	<% } else if (request.getParameter("createblog") != null) { %>
 		<jsp:include page="create_blog_form.jsp" />
-	<% } else if (request.getParameter("newBlogPost") != null) { %>
-    <jsp:include page="new_blog_post_form.jsp" />
+	<% } else if (request.getParameter("createpost") != null) { %>
+    <jsp:include page="blog_post_form.jsp" />
 	<% } else if (request.getParameter("blogid") != null) { %>
 		<jsp:include page="blog_post.jsp" />
 		<% if (user.getUserid() != "") { %>
 			<br/>
-			<jsp:include page="comments.jsp" />
+			<jsp:include page="blog_post_comments.jsp" />
 		<% } %>
 	<% } //else
-			// Lista alla bloggar som finns registrerade i systemet?
+		// Lista alla bloggar som finns registrerade i systemet?
 	%>
 </div>
 <div id="wrapper-east">
     <jsp:include page="sidebar.jsp" />
 </div>
+<div class="clear"></div>

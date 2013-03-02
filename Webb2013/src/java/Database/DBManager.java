@@ -32,54 +32,60 @@ public class DBManager implements iDBManager {
     private static final String DRIVER_PATH = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static final String DATABASE_PATH = "jdbc:sqlserver://idasql-db.hb.se:56077;"
             + "databaseName=dbtht1204;selectMethod=cursor";
-    //USER
+   
+		//USER
     private static final String GET_USER = "SELECT * FROM JM_UserInformation WHERE ";
     private static final String GET_USER_ID = "SELECT UserID FROM JM_UserInformation WHERE Username = '";
     private static final String GET_USERNAME = "SELECT Username FROM JM_UserInformation WHERE UserID = '";
     private static final String GET_PASSWORD = "SELECT Password FROM JM_UserInformation WHERE UserID = '";
     private static final String INSERT_USER = "INSERT INTO JM_UserInformation VALUES (";
-    //BLOGG
+    
+		//BLOGG
     private static final String GET_BLOG_ID = "SELECT BloggID FROM JM_BlogPost WHERE UserID = '";
     private static final String GET_MAX_BLOG_ID = "SELECT TOP(1) BlogID FROM JM_BlogPost ORDER BY BlogID DESC";
     private static final String GET_BLOG_HEADLINE = "SELECT BloggHeader FROM JM_BlogPost WHERE BloggID = '";
     private static final String GET_BLOG_POST_DATE = "SELECT BloggPostDate FROM JM_BlogPost WHERE BloggID = '";
     private static final String GET_BLOG_TEXT = "SELECT BloggText FROM JM_BlogPost WHERE BloggID = '";
     private static final String INSERT_BLOG = "INSERT INTO JM_BlogPost VALUES (";
-    //COMMENT
+    
+		//COMMENT
     private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE TODO = '";
     private static final String GET_COMMENT_POST_DATE = "SELECT CommentPostDate FROM JM_BlogComment WHERE TODO = '";
     private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BlogComment WHERE TODO = '";
     private static final String INSERT_COMMENT = "INSERT INTO JM_BlogComment VALUES (";
-    // User Table
+    
+		// User Table
     private static final String CREATE_TABLE_USER =
             "CREATE TABLE JM_UserInformation("
             + "UserID VARCHAR(30) NOT NULL,"
             + "Username VARCHAR(30) NOT NULL,"
             + "Password VARCHAR(30) NOT NULL,"
             + "PRIMARY KEY(UserID))";
-    // Blogg Table
+    
+		// Blogg Table
     private static final String CREATE_TABLE_BLOG =
             "CREATE TABLE JM_BlogPost("
-            + "BlogID SMALLINT NOT NULL,"
-            + "BlogHeader VARCHAR(100) NOT NULL,"
-            + "BlogText VARCHAR(5000) NOT NULL,"
-            + "BlogPostDate Date NOT NULL,"
+            + "BlogPostID SMALLINT NOT NULL,"
+            + "BlogPostHeader VARCHAR(50) NOT NULL,"
+            + "BlogPostDate DATE NOT NULL,"
             + "UserID VARCHAR(30) NOT NULL,"
+            + "BlogPostText VARCHAR(5000) NOT NULL,"
             + "PRIMARY KEY(UserID),"
-            + "PRIMART KEY(BlogID),"
-            + "FOREIGN KEY(UserID) references JM_UserInformation(UserID))"; 
+						+ "PRIMARY KEY(BlogPostID),"
+            + "FOREIGN KEY(UserID) REFERENCES JM_UserInformation(UserID)";
     
     // Comment Table
     private static final String CREATE_TABLE_COMMENT =
             "CREATE TABLE JM_BlogComment("
-            + "UserID SMALLINT NOT NULL,"
+            + "UserID VARCHAR(30) NOT NULL,"
             + "BlogID SMALLINT NOT NULL,"
             + "CommentPostDate Date NOT NULL,"
             + "CommentID SMALLINT NOT NULL,"
             + "CommentText VARCHAR(500) NOT NULL,"
             + "PRIMARY KEY(UserID)," 
-            + "FOREIGN KEY(UserID) references JM_UserInformation(UserID))";
-    private static Connection connection;
+            + "FOREIGN KEY(UserID) REFERENCES JM_UserInformation(UserID))";
+    
+		private static Connection connection;
     private Statement statement;
 
     public DBManager()  {
@@ -90,6 +96,9 @@ public class DBManager implements iDBManager {
         try {
             Class.forName(DRIVER_PATH);
             connection = DriverManager.getConnection(DATABASE_PATH, username, password);
+						//statement = connection.createStatement();
+						//statement.executeUpdate("DROP TABLE JM_BlogPost");
+						//statement.executeUpdate(CREATE_TABLE_BLOG);
             return connection;
         } catch (Exception e) {
             System.out.println(e);
