@@ -26,10 +26,10 @@
 		<% if (database.getLogin().equals("") && database.getPassword().equals("")) { %>
 			<li><a href="?dbtlogin=true">Dbt Login</a></li>
 		<% } %>
-		<% if (user.getUserid() == -1) { %>
+		<% if (user.getUserid() > 0 && !user.getBlog().equals("")) { %>
 			<li> <a href="?createpost=true">New blog post</a></li>
     <% } %>
-		<% if (user.getUserid() == -1) { %>
+		<% if (user.getUserid() > 0 && user.getBlog().equals("")) { %>
 			<li id="nav-bar-createblog"><a href="?createblog=true">Create Blog</a></li>
 		<% } %>
 	</ul>
