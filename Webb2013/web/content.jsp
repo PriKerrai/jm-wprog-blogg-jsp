@@ -29,7 +29,7 @@
 		<% if (request.getParameter("register").equals("success")) { %>
 			<h1 class="content-page-title">Registration successfull</h1>
 			<p class="content-msg">
-				<% out.println(user.getUserid()+" : "+user.getUsername()+" : "+user.getPassword()); %>
+				<% out.println(user.getUseralias()+" : "+user.getUsername()+" : "+user.getPassword()); %>
 			</p>
 		<% } else { %>
 			<jsp:include page="register_form.jsp" />
@@ -40,12 +40,15 @@
     <jsp:include page="blog_post_form.jsp" />
 	<% } else if (request.getParameter("blogid") != null) { %>
 		<jsp:include page="blog_post.jsp" />
-		<% if (user.getUserid() != "") { %>
+		<% if (user.getUserid() == -1) { %>
 			<br/>
 			<jsp:include page="blog_post_comments.jsp" />
 		<% } %>
-	<% } else { %>
+	<% } else if(!database.getLogin().equals("") && !database.getPassword().equals("")) { %>
 		<jsp:include page="blog_list.jsp" />
+	<% } else { %>
+		<h1 class="content-page-title">Welcome!</h1>
+		<p class="content-msg">Please sign in to the database to view existing blogs.</p>
 	<% } %>
 </div>
 <div id="wrapper-east">

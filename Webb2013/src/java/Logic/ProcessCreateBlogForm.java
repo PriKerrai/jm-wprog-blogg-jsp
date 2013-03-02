@@ -18,8 +18,7 @@ public class ProcessCreateBlogForm {
     private iDBManager dbManager = new DBManager();
 
     public ProcessCreateBlogForm(BlogData createBlog, UserData user) {
-        System.out.println(createBlog.getBlogName() + user.getUserid());
-                
+			System.out.println(createBlog.getBlogName() + user.getUserid());
     }
-
+		
 }

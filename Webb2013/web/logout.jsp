@@ -5,7 +5,8 @@
 --%>
 
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
-<jsp:setProperty name="user" property="userid" value="" />
+<jsp:setProperty name="user" property="userid" value="-1" />
+<jsp:setProperty name="user" property="useralias" value="" />
 <jsp:setProperty name="user" property="username" value="" />
 <jsp:setProperty name="user" property="password" value="" />
 

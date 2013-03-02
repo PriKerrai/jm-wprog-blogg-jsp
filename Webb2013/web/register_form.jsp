@@ -17,7 +17,7 @@
 			Password:
 		</div>
 		<div id="register-form-input-box">
-			<input type="text" name="userid" value="" />
+			<input type="text" name="useralias" value="" />
 			<br />
 			<input type="text" name="username" value="" />
 			<br />

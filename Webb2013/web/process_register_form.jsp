@@ -17,9 +17,10 @@
 	ProcessRegisterForm process = new ProcessRegisterForm();
 	
 	if (!process.isValidRegInput(user)) {
-		registerError.setError("UserID and/or Username already in use.");
+		registerError.setError("User alias and/or username already in use.");
 %>
-		<jsp:setProperty name="user" property="userid" value="" />
+		<jsp:setProperty name="user" property="userid" value="-1" />
+		<jsp:setProperty name="user" property="useralias" value="" />
 		<jsp:setProperty name="user" property="username" value="" />
 		<jsp:setProperty name="user" property="password" value="" />
 <%
