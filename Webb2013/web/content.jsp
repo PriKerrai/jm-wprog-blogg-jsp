@@ -37,7 +37,7 @@
 	<% } else if (request.getParameter("createblog") != null) { %>
 		<jsp:include page="create_blog_form.jsp" />
 	<% } else if (request.getParameter("newBlogPost") != null) { %>
-    <jsp:include page="new_blog_post.jsp" />
+    <jsp:include page="new_blog_post_form.jsp" />
 	<% } else if (request.getParameter("blogid") != null) { %>
 		<jsp:include page="blog_post.jsp" />
 		<% if (user.getUserid() != "") { %>
