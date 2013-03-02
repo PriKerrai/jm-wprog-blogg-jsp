@@ -9,13 +9,13 @@
 </jsp:useBean>
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 
-<%@ page import="Logic.ProcessNewBlogPost"
+<%@ page import="Logic.ProcessNewBlogPostForm"
 				 import="java.io.*"
 				 import="java.util.*" 
 %>
 
 <%
-	ProcessNewBlogPost process = new ProcessNewBlogPost(newblogentry, user);
+	ProcessNewBlogPostForm process = new ProcessNewBlogPostForm(newblogentry, user);
 	
         // Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);

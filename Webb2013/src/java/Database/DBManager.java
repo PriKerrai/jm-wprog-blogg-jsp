@@ -40,7 +40,7 @@ public class DBManager implements iDBManager {
     private static final String INSERT_USER = "INSERT INTO JM_UserInformation VALUES (";
     //BLOGG
     private static final String GET_BLOG_ID = "SELECT BloggID FROM JM_BlogPost WHERE UserID = '";
-    private static final String GET_MAX_BLOG_ID = "SELECT TOP(1) BlogID FROM JM_BlogPost ORDER BY AdID DESC";
+    private static final String GET_MAX_BLOG_ID = "SELECT TOP(1) BlogID FROM JM_BlogPost ORDER BY BlogID DESC";
     private static final String GET_BLOG_HEADLINE = "SELECT BloggHeader FROM JM_BlogPost WHERE BloggID = '";
     private static final String GET_BLOG_POST_DATE = "SELECT BloggPostDate FROM JM_BlogPost WHERE BloggID = '";
     private static final String GET_BLOG_TEXT = "SELECT BloggText FROM JM_BlogPost WHERE BloggID = '";
