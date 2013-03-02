@@ -6,6 +6,7 @@
 
 <div id="comments-box">
 	<%
+		
 		// Fetch le comments
 	%>
 	<p id="comments-box-title">Comment the post</p>

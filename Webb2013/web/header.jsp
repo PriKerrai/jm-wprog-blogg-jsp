@@ -3,13 +3,24 @@
     Created on : 2013-feb-20, 16:21:25
     Author     : Josef
 --%>
+<%@page import="Logic.BlogInfo" %>
+
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:useBean id="database" class="Bean.DatabaseLoginData" scope="application" />
 
-<a id="blog-title" href="?index=true"><% out.print("Insert Blog Title");%></a>
+<%
+	String blogName = "Bloggimus";
+	if (request.getParameter("blogid") != null) {
+		//int blogID = Integer.parseInt(request.getParameter("blogid"));
+		//BlogInfo blogInfo = new BlogInfo();
+		//blogName = blogInfo.getBlogName(blogID);
+	}
+%>
+
+<a id="blog-title" href="index.jsp"><%= blogName %></a>
 <div id="nav-bar-content">
 	<ul>
-		<li><a href="?index=true">Home</a></li>
+		<li><a href="index.jsp">Home</a></li>
 		<li><a href="?register=true">Register</a></li>
 		<% if (user.getUserid().equals("")) { %>
 			<li><a href="?login=true">Login</a></li>
