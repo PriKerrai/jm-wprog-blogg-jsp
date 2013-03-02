@@ -6,7 +6,7 @@
 
 <div id="blog-post-box">
     <p id="blog-post-title">Create new blog post</p>
-    <form action="process_new_blog_post.jsp" method="post">
+    <form action="process_new_blog_post_form.jsp" method="post">
         <div id="blog-post-box">
             Headline of new blog message
             <input type="text" name="blogHeadline">
