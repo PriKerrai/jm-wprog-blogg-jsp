@@ -58,6 +58,10 @@ hr {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
 	background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,0.4) 25%,rgba(255,255,255,1) 50%,rgba(255,255,255,0.4) 75%,rgba(255,255,255,0) 100%);
 }
+#blog-post-separator {
+    margin: 20px 0px 0px 50px;
+    width: 75%;
+}
 
 
 /* WRAPPERS | SITE LAYOUT */
@@ -160,16 +164,39 @@ hr {
 }
 
 
-/* BLOG POST COMMENT */
-#comments-box{
+/* BLOG POST COMMENTS */
+#comments-box {
+    margin: 0px 0px 0px 50px;
+}
+#comments-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+div.comment-box {
+    margin: 0px 0px 0px 0px;
+    width: 50%;
+}
+p.comment-user {
+    font-size: 14px;
+}
+p.comment-text {
+    font-size: 14px;
+}
+p.comment-date {
+    font-size: 10px;
+}
+
+/* BLOG POST COMMENT FORM */
+#comment-form-box{
 	margin: 0px 0px 0px 50px;
 	padding: 0;
+        line-height: 30px;
 }
-#comments-box-title {
+#comment-form-title {
 	font-size: 16px;
 	font-weight: bold;
 }
-#comment-textarea {
+#comment-form-textarea {
 	width: 300px;
 	height: 100px;
 }
@@ -183,10 +210,12 @@ hr {
 	line-height: 30px;
 }
 
+
 /* BLOG POST LIST */
 #blogpost-list-box {
 	margin: 0px 0px 0px 40px;
 }
+
 
 /* LOGIN FORM */
 #login-form-box {

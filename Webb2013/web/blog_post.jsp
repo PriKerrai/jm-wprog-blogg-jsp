@@ -5,10 +5,9 @@
 --%>
 
 <%@ page import="Interface.iDBManager"
-				 import="Database.DBManager"
+         import="Database.DBManager"
 %>
 <%
-	
 	iDBManager dbManager = new DBManager();
 	
 	int blogID, postID = 0;
