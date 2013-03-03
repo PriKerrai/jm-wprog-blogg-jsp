@@ -106,7 +106,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String getBlogPostTitle(int blogID, int postID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
                 GET_BLOG_POST_HEADLINE
@@ -121,7 +121,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String getBlogPostContent(int blogID, int postID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
                 GET_BLOG_POST_TEXT
@@ -136,7 +136,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String getBlogPostDate(int blogID, int postID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
                 GET_BLOG_POST_DATE
@@ -151,7 +151,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String getBlogPostAuthor(int blogID, int postID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
                 GET_BLOG_POST_AUTHOR + blogID + "'");
@@ -164,7 +164,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public boolean isValidRegInput(String useralias, String username)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
                 GET_USER + "UserAlias = '" + useralias + "'"
@@ -179,7 +179,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public void registerUser(UserData user)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_MAX_USER_ID);
 
@@ -198,7 +198,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public void registerNewBlog(BlogData newBlog, UserData user)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         statement.executeUpdate(
                 INSERT_BLOG + newBlog.getBlogname() + "'"
@@ -207,7 +207,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public void registerNewBlogPost(BlogPost blogPost, UserData user)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         statement.executeUpdate(
                 INSERT_BLOG_POST + "'" + (getMaxBlogPostID(user.getUserid())+1) + "',"
@@ -233,7 +233,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public boolean isValidLogin(String username, String password)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
                 GET_USER + "Username = '" + username + "'"
@@ -248,7 +248,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public UserData userLogin(String username, String password)
-            throws SQLException {
+    throws SQLException {
         UserData tmp = new UserData();
 
         statement = connection.createStatement();
@@ -268,7 +268,7 @@ public class DBManager implements iDBManager {
     }
 
     public int getUserID(String username)
-            throws SQLException {
+    throws SQLException {
         int userID = -1;
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_USER_ID + username + "'");
@@ -279,7 +279,7 @@ public class DBManager implements iDBManager {
     }
 
     public String getUseralias(int userID)
-            throws SQLException {
+    throws SQLException {
         String alias = "";
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(GET_USERNAME + userID + "'");
@@ -290,7 +290,7 @@ public class DBManager implements iDBManager {
     }
 
     public String getUsername(int userID)
-            throws SQLException {
+    throws SQLException {
         String username = "";
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(GET_USERNAME + userID + "'");
@@ -302,7 +302,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String getPassword(int userID)
-            throws SQLException {
+    throws SQLException {
         String password = "";
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(GET_PASSWORD + userID + "'");
@@ -320,34 +320,33 @@ public class DBManager implements iDBManager {
 
     }
 
-    public int getMaxCommentID(int blogPostID, int blogID) throws SQLException {
-        
+    public int getMaxCommentID(int blogPostID, int blogID)
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_MAX_COMMENT_ID + blogPostID + "'ORDER BY CommentID DESC");
 
         if (result.next()) {
             return result.getInt("CommentID");
         }
-
-        return 1;
+        return 0;
 
     }
 
     @Override
     public int getMaxBlogPostID(int blogID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_MAX_BLOG_POST_ID + blogID + "' ORDER BY BlogPostID DESC");
 
         if (result.next()) {
             return result.getInt("BlogPostID");
         }
-        return 1;
+        return 0;
     }
 
     @Override
     public int getNumberOfPosts(int blogID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_NUM_POSTS + blogID + "'");
 
@@ -359,7 +358,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public int[] getAllBlogPostID(int blogID)
-            throws SQLException {
+    throws SQLException {
         int[] idList = new int[getNumberOfPosts(blogID)];
         int i = 0;
 
@@ -376,7 +375,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String[] getAllBlogPosts(int blogID)
-            throws SQLException {
+    throws SQLException {
         String[] postList = new String[getNumberOfPosts(blogID)];
         int i = 0;
 
@@ -394,7 +393,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public int getNumberOfBlogs()
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_NUM_BLOGS);
 
@@ -425,7 +424,7 @@ public class DBManager implements iDBManager {
 
     @Override
     public String getBlogName(int blogID)
-            throws SQLException {
+    throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_BLOG_NAME + blogID + "'");
 

@@ -20,10 +20,7 @@ public class ProcessBlogCommentForm {
      private iDBManager dbManager = new DBManager();
      
      public ProcessBlogCommentForm(UserData userData, BlogData blogData, BlogComment blogComment) throws SQLException {
-         
          dbManager.registerNewBlogComment(blogData, userData, blogComment);
-         
          System.out.println(userData.getUserid() + blogData.getBlogid() + blogComment.getComment() + blogComment.getPostid());
-         
      }
 }

@@ -11,7 +11,6 @@
 
 <%
 	int blogID = blogData.getBlogid();
-	System.out.println("BLOG ID: "+blogID);
 %>
 <a id="blog-title"
 	 href="index.jsp<% if(blogID > 0) out.println("?blogid="+blogID); %>"

@@ -20,7 +20,6 @@ public class ProcessNewBlogPostForm {
     
     public ProcessNewBlogPostForm(BlogPost blogpost, UserData user) 
 		throws SQLException {
-        System.out.println("Rubrik: " + blogpost.getBlogheadline() + "Text: " + blogpost.getText() + "Användare: " + user.getUsername());
         dbManager.registerNewBlogPost(blogpost, user);
         
     }

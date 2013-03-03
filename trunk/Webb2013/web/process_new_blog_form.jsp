@@ -20,7 +20,6 @@
 
 <%
 	ProcessCreateBlogForm process = new ProcessCreateBlogForm();
-	System.out.println("Blog: \""+newBlogData.getBlogname()+"\" : "+user.getPassword());
 	if(!process.isValidBlogInput(newBlogData, user)) {
 		System.out.println("IF");
 		blogError.setError("Invalid blog name or password.");
