@@ -26,10 +26,10 @@
 <%
 		}
 	} else {
-		blogData.setBlogid(-1);
+		blogData.setBlogid(0);
 		blogData.setBlogname("Blogimus");
 %>
-		<jsp:setProperty name="blogData" property="blogid" value="-1" />
+		<jsp:setProperty name="blogData" property="blogid" value="0" />
 		<jsp:setProperty name="blogData" property="blogname" value="Blogimus" />
 <%
 	}

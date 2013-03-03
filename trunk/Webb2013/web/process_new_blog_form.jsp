@@ -29,6 +29,10 @@
 	} else {
 		System.out.println("ELSE");
 		process.registerBlog(newBlogData, user);
+		user.setBlog(newBlogData.getBlogname());
+%>
+		<jsp:setProperty name="user" property="blog" value="<%= newBlogData.getBlogname() %>" />
+<%
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?createblog=success");
 	}
