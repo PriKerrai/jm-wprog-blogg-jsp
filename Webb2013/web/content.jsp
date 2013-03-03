@@ -4,9 +4,22 @@
     Author     : Josef
 
 --%>
+
+<%@page import="Database.DBManager"%>
+<%@page import="Interface.iDBManager"%>
+
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:useBean id="database" class="Bean.DatabaseLoginData" scope="session" />
+<jsp:useBean id="blogData" class="Bean.BlogData" scope="session" />
 <jsp:useBean id="newBlogData" class="Bean.BlogData" scope="session" />
+
+<%
+	int postID = 0;
+	if (!database.getLogin().equals("") && !database.getPassword().equals("")) {
+		iDBManager dbManager = new DBManager();
+		postID = dbManager.getLatestBlogPost(blogData.getBlogid());
+	}
+%>
 
 <div id="wrapper-west">
 
@@ -30,7 +43,7 @@
 		<% if (request.getParameter("register").equals("success")) { %>
 			<h1 class="content-page-title">Registration successfull</h1>
 			<p class="content-msg">
-                            <% out.println(user.getUseralias()+" : "+user.getUsername()+" : "+user.getPassword()); %>
+				<% out.println(user.getUseralias()+" : "+user.getUsername()+" : "+user.getPassword()); %>
 			</p>
 		<% } else { %>
 			<jsp:include page="register_form.jsp" />
@@ -48,13 +61,16 @@
     <jsp:include page="blog_post_form.jsp" />
 	<% } else if (request.getParameter("blogid") != null) { %>
 		<jsp:include page="blog_post.jsp" />
-                <hr id="blog-post-separator"/>
-                <br/>
-		<jsp:include page="blog_post_comments.jsp" />
-		<% if (user.getUserid() > 0) { %>
-                        <br/>
-                        <jsp:include page="comment_form.jsp" />
+		<% if (postID > 0) { %>
+			<hr id="blog-post-separator"/>
+			<br/>
+			<jsp:include page="blog_post_comments.jsp" />
+			<% if (user.getUserid() > 0) { %>
+				<br/>
+				<jsp:include page="comment_form.jsp" />
+			<% } %>
 		<% } %>
+		
 	<% } else if(!database.getLogin().equals("") && !database.getPassword().equals("")) { %>
 		<jsp:include page="blog_list.jsp" />
 	<% } else { %>

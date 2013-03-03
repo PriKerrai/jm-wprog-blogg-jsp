@@ -21,7 +21,7 @@
 	<ul>
 		<li><a href="index.jsp">Home</a></li>
 		<li><a href="?register=true">Register</a></li>
-		<% if (user.getUserid() == -1) { %>
+		<% if (user.getUserid() < 1) { %>
 			<li><a href="?login=true">Login</a></li>
 		<% } else { %>
 			<li>
