@@ -48,7 +48,8 @@
     <jsp:include page="blog_post_form.jsp" />
 	<% } else if (request.getParameter("blogid") != null) { %>
 		<jsp:include page="blog_post.jsp" />
-		<% if (user.getUserid() == -1) { %>
+                
+		<% if (user.getUserid() > 0) { %>
 			<br/>
 			<jsp:include page="blog_post_comments.jsp" />
 		<% } %>

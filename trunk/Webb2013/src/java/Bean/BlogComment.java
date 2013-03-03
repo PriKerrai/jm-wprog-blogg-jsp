@@ -10,15 +10,24 @@ package Bean;
  */
 public class BlogComment {
     
-    private String blogComment;
+    private String comment;
+    private int postid;
     
-    public void setBlogComment(String blogCommentText) {
-        blogComment = blogCommentText;
+    public void setPostid(int newpostid) {
+        postid = newpostid;
+    }
+    
+    public int getPostid() {
+        return postid;
+    }
+    
+    public void setComment(String blogCommentText) {
+        comment = blogCommentText;
         
     }
     
-    public String getBlogComment() {
-        return blogComment;
+    public String getComment() {
+        return comment;
     }
     
 }

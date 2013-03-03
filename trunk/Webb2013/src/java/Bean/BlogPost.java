@@ -10,23 +10,23 @@ package Bean;
  */
 public class BlogPost {
 
-    private String blogHeadline;
-    private String blogText;
+    private String blogheadline;
+    private String text;
     
-    public void setBlogHeadline(String newHeader) {
-        blogHeadline = newHeader;
+    public void setBlogheadline(String newheader) {
+        blogheadline = newheader;
     }
 
-    public String getBlogHeadline() {
-        return blogHeadline;
+    public String getBlogheadline() {
+        return blogheadline;
     }
     
-    public void setBlogText(String newText) {
-        blogText = newText;
+    public void setText(String newtext) {
+        text = newtext;
     }
 
-    public String getBlogText() {
-        return blogText;
+    public String getText() {
+        return text;
     }
     
     

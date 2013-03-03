@@ -18,10 +18,11 @@ public class ProcessNewBlogPostForm {
     
     private iDBManager dbManager = new DBManager();
     
-    public ProcessNewBlogPostForm(BlogPost blogPost, UserData user) 
+    public ProcessNewBlogPostForm(BlogPost blogpost, UserData user) 
 		throws SQLException {
-        dbManager.registerNewBlogPost(blogPost, user);
-        System.out.println("Rubrik: " + blogPost.getBlogHeadline() + "Text: " + blogPost.getBlogText() + "Användare: " + user.getUsername());
+        System.out.println("Rubrik: " + blogpost.getBlogheadline() + "Text: " + blogpost.getText() + "Användare: " + user.getUsername());
+        dbManager.registerNewBlogPost(blogpost, user);
+        
     }
     
 }

@@ -4,9 +4,8 @@
     Author     : Kerrai
 --%>
 
-<jsp:useBean id="newBlogPost" class="Bean.BlogPost" scope="session" >
-<jsp:setProperty name="newblogentry" property="*" />
-</jsp:useBean>
+<jsp:useBean id="newBlogPost" class="Bean.BlogPost" scope="session" />
+<jsp:setProperty name="newBlogPost" property="*" />
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 
 <%@ page import="Logic.ProcessNewBlogPostForm"
