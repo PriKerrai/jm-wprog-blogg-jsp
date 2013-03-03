@@ -9,7 +9,14 @@
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:useBean id="blogData" class="Bean.BlogData" scope="session" />
 
-<a id="blog-title" href="index.jsp"><%= blogData.getBlogname() %></a>
+<%
+	String blogID = ""+blogData.getBlogid();
+%>
+<a id="blog-title"
+	 href="index.jsp<% if(!blogID.equals("")) out.println("?blogid="+blogID); %>"
+>
+	<%= blogData.getBlogname() %>
+</a>
 <div id="nav-bar-content">
 	<ul>
 		<li><a href="index.jsp">Home</a></li>
