@@ -9,7 +9,7 @@
   <form action="process_new_blog_form.jsp" method="post">
 		<div id="createblog-form-text-box">
 			Name your blog:
-			<input type="text" name="name">
+			<input type="text" name="blogname">
 			<br />
 			Please enter your password:
 			<input type="password" name="password">

@@ -19,7 +19,6 @@
 	String login, password;
 	login = request.getParameter("login");
 	password = request.getParameter("password");
-	System.out.println("PDLF.jsp: "+login+":"+password);
 %>
 <jsp:setProperty name="database" property="login" value="<%= login %>" />
 <jsp:setProperty name="database" property="password" value="<%= password %>" />
@@ -37,8 +36,8 @@
 		<jsp:setProperty name="database" property="login" value="" />
 		<jsp:setProperty name="database" property="password" value="" />
 <%
-		//response.setStatus(response.SC_MOVED_TEMPORARILY);
-		//response.setHeader("Location", "index.jsp?dbtlogin=true");
+		response.setStatus(response.SC_MOVED_TEMPORARILY);
+		response.setHeader("Location", "index.jsp?dbtlogin=true");
 	} else {
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?dbtlogin=success");

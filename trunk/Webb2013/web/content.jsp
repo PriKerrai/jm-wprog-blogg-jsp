@@ -6,6 +6,7 @@
 --%>
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:useBean id="database" class="Bean.DatabaseLoginData" scope="session" />
+<jsp:useBean id="newBlogData" class="Bean.BlogData" scope="session" />
 
 <div id="wrapper-west">
 
@@ -35,7 +36,14 @@
 			<jsp:include page="register_form.jsp" />
 		<% } %>
 	<% } else if (request.getParameter("createblog") != null) { %>
-		<jsp:include page="create_blog_form.jsp" />
+		<% if (request.getParameter("createblog").equals("success")) { %>
+			<h1 class="content-page-title">Blog creation successfull</h1>
+			<p class="content-msg">
+				<% out.println("Blog \""+newBlogData.getBlogname()+"\" created"); %>
+			</p>
+		<% } else { %>
+			<jsp:include page="create_blog_form.jsp" />
+		<% } %>
 	<% } else if (request.getParameter("createpost") != null) { %>
     <jsp:include page="blog_post_form.jsp" />
 	<% } else if (request.getParameter("blogid") != null) { %>
