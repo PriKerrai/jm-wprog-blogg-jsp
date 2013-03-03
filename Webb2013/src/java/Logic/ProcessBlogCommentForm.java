@@ -23,7 +23,7 @@ public class ProcessBlogCommentForm {
          
          dbManager.registerNewBlogComment(blogData, userData, blogComment);
          
-         System.out.println(userData.getUserid() + blogData.getBlogid() + blogComment.getBlogComment());
+         System.out.println(userData.getUserid() + blogData.getBlogid() + blogComment.getComment() + blogComment.getPostid());
          
      }
 }

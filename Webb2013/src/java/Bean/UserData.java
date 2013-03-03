@@ -7,7 +7,7 @@ package Bean;
  */
 public class UserData {
 	
-	private int userid = -1;
+	private int userid = 0;
 	private String useralias = "";
 	private String username = "";
 	private String password = "";

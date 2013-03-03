@@ -10,6 +10,7 @@ import Bean.UserData;
 import java.sql.Connection;
 import java.sql.SQLException;
 import Bean.BlogPost;
+import Logic.Comment;
 import java.util.Date;
 
 /**
@@ -69,6 +70,13 @@ public abstract interface iDBManager {
         
 	public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment)
 	throws SQLException;
+        
+        public abstract int[] getAllCommentID(int blogPostID) throws SQLException;
+        
+        public abstract Comment getComment(int commentID) throws SQLException;
+        
+        public abstract Comment[] getAllComments(int blogID, int blogPostID)
+        throws SQLException;
 	
 	public abstract boolean isValidLogin(String username, String password)
 	throws SQLException;

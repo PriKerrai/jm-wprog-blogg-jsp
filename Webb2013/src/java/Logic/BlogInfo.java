@@ -40,4 +40,12 @@ public class BlogInfo {
 		return dbManager.getAllBlogPosts(blogID);
 	}
 	
+        public int[] getAllCommentID(int blogPostID) throws SQLException {
+            return dbManager.getAllCommentID(blogPostID);
+        }
+        
+        public Comment[] getAllComments(int blogID, int blogPostID) 
+        throws SQLException {
+            return dbManager.getAllComments(blogID, blogPostID);
+        }
 }
