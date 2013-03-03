@@ -23,7 +23,7 @@
 	<jsp:setProperty name="user" property="password" value="<%= user.getPassword() %>" />
 	<jsp:setProperty name="user" property="blog" value="<%= user.getBlog() %>" />
 <%
-	if (user.getUserid() == -1) {
+	if (user.getUserid() < 1) {
 		loginError.setError("Invalid username or password.");
 		response.setStatus(response.SC_MOVED_TEMPORARILY);
 		response.setHeader("Location", "index.jsp?login=true");

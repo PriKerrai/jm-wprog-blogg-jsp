@@ -20,8 +20,7 @@ public class ProcessNewBlogPostForm {
     
     public ProcessNewBlogPostForm(BlogPost blogpost, UserData user) 
 		throws SQLException {
-        dbManager.registerNewBlogPost(blogpost, user);
-        
+			dbManager.registerNewBlogPost(blogpost, user);  
     }
     
 }

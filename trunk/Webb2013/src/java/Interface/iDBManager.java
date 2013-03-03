@@ -47,19 +47,22 @@ public abstract interface iDBManager {
 	public abstract String[] getAllBlogPosts(int blogID)
 	throws SQLException;
 	
-	public abstract String getBlogPostTitle(int blogID, int postID)
+	public abstract String getBlogPostTitle(int postID)
 	throws SQLException;
 	
-	public abstract String getBlogPostContent(int blogID, int postID)
+	public abstract String getBlogPostContent(int postID)
 	throws SQLException;
 	
-	public abstract String getBlogPostDate(int blogID, int postID)
+	public abstract String getBlogPostDate(int postID)
 	throws SQLException;
 	
 	public abstract String getBlogPostAuthor(int blogID, int postID)
 	throws SQLException;
 	
-	public abstract int getMaxBlogPostID(int blogID) 
+	public abstract int getMaxBlogPostID() 
+	throws SQLException;
+	
+	public abstract int getLatestBlogPost(int blogID)
 	throws SQLException;
 	
 	public abstract void registerNewBlog(BlogData newBlog, UserData user)
@@ -71,12 +74,14 @@ public abstract interface iDBManager {
 	public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment)
 	throws SQLException;
         
-        public abstract int[] getAllCommentID(int blogPostID) throws SQLException;
+  public abstract int[] getAllCommentID(int blogPostID)
+	throws SQLException;
         
-        public abstract Comment getComment(int commentID) throws SQLException;
+	public abstract Comment getComment(int commentID)
+	throws SQLException;
         
-        public abstract Comment[] getAllComments(int blogID, int blogPostID)
-        throws SQLException;
+	public abstract Comment[] getAllComments(int blogPostID)
+	throws SQLException;
 	
 	public abstract boolean isValidLogin(String username, String password)
 	throws SQLException;

@@ -16,7 +16,7 @@
 <%
 	ProcessNewBlogPostForm process = new ProcessNewBlogPostForm(newBlogPost, user);
 	
-        // Redirect user back to index
+  // Redirect user back to index
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", "index.jsp"); 
 %>

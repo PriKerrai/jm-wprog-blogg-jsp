@@ -21,6 +21,5 @@ public class ProcessBlogCommentForm {
      
      public ProcessBlogCommentForm(UserData userData, BlogData blogData, BlogComment blogComment) throws SQLException {
          dbManager.registerNewBlogComment(blogData, userData, blogComment);
-         System.out.println(userData.getUserid() + blogData.getBlogid() + blogComment.getComment() + blogComment.getPostid());
      }
 }

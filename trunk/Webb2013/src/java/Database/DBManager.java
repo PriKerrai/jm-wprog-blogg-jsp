@@ -42,7 +42,8 @@ public class DBManager implements iDBManager {
     private static final String INSERT_BLOG = "UPDATE JM_UserInformation SET Blog='";
     // BLOG POST
     private static final String GET_BLOG_POST_ID = "SELECT BlogPostID FROM JM_BlogPost WHERE UserID = '";
-    private static final String GET_MAX_BLOG_POST_ID = "SELECT TOP(1) BlogPostID FROM JM_BlogPost WHERE UserID ='";
+    private static final String GET_MAX_BLOG_POST_ID = "SELECT TOP(1) BlogPostID FROM JM_BlogPost ORDER BY BlogPostID DESC";
+		private static final String GET_LATEST_BLOG_POST = "SELECT TOP(1) BlogPostID FROM JM_BlogPost WHERE UserID = '";
     private static final String GET_BLOG_POST_HEADLINE = "SELECT BlogPostHeader FROM JM_BlogPost WHERE ";
     private static final String GET_BLOG_POST_DATE = "SELECT BlogPostDate FROM JM_BlogPost WHERE ";
     private static final String GET_BLOG_POST_TEXT = "SELECT BlogPostText FROM JM_BlogPost WHERE ";
@@ -50,11 +51,11 @@ public class DBManager implements iDBManager {
     private static final String GET_NUM_POSTS = "SELECT COUNT(*) as NumPosts FROM JM_BlogPost WHERE UserID = '";
     private static final String INSERT_BLOG_POST = "INSERT INTO JM_BlogPost VALUES (";
     // COMMENT
-    private static final String GET_COMMENT = "SELECT * FROM JM_BlogComment WHERE CommentID = '";
-    private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE BlogPostID = '";
+    private static final String GET_COMMENT = "SELECT * FROM JM_BlogComment WHERE ";
+    private static final String GET_COMMENT_ID = "SELECT CommentID FROM JM_BlogComment WHERE ";
     private static final String GET_COMMENT_DATE = "SELECT CommentDate FROM JM_BlogComment WHERE BlogPostID = '";
     private static final String GET_COMMENT_TEXT = "SELECT CommentText FROM JM_BlogComment WHERE BlogPostID = '";
-    private static final String GET_MAX_COMMENT_ID = "SELECT TOP(1) CommentID FROM JM_BlogComment WHERE BlogPostID ='";
+    private static final String GET_MAX_COMMENT_ID = "SELECT TOP(1) CommentID FROM JM_BlogComment ORDER BY CommentID DESC";
     private static final String INSERT_COMMENT = "INSERT INTO JM_BlogComment VALUES (";
     private static final String GET_NUM_COMMENTS = "SELECT COUNT(*) as NumComments FROM JM_BlogComment WHERE BlogPostID ='";
     // USER
@@ -105,13 +106,12 @@ public class DBManager implements iDBManager {
     }
 
     @Override
-    public String getBlogPostTitle(int blogID, int postID)
+    public String getBlogPostTitle(int postID)
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-                GET_BLOG_POST_HEADLINE
-                + "UserID = '" + blogID + "' AND "
-                + "BlogPostID = '" + postID + "'");
+					GET_BLOG_POST_HEADLINE + "BlogPostID = '" + postID + "'"
+				);
 
         if (result.next()) {
             return result.getString("BlogPostHeader");
@@ -120,13 +120,12 @@ public class DBManager implements iDBManager {
     }
 
     @Override
-    public String getBlogPostContent(int blogID, int postID)
+    public String getBlogPostContent(int postID)
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-                GET_BLOG_POST_TEXT
-                + "UserID = '" + blogID + "' AND "
-                + "BlogPostID = '" + postID + "'");
+					GET_BLOG_POST_TEXT + "BlogPostID = '" + postID + "'"
+				);
 
         if (result.next()) {
             return result.getString("BlogPostText");
@@ -135,13 +134,12 @@ public class DBManager implements iDBManager {
     }
 
     @Override
-    public String getBlogPostDate(int blogID, int postID)
+    public String getBlogPostDate(int postID)
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-                GET_BLOG_POST_DATE
-                + "UserID = '" + blogID + "' AND "
-                + "BlogPostID = '" + postID + "'");
+					GET_BLOG_POST_DATE + "BlogPostID = '" + postID + "'"
+				);
 
         if (result.next()) {
             return result.getString("BlogPostDate");
@@ -154,7 +152,8 @@ public class DBManager implements iDBManager {
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-                GET_BLOG_POST_AUTHOR + blogID + "'");
+					GET_BLOG_POST_AUTHOR + blogID + "'"
+				);
 
         if (result.next()) {
             return result.getString("Username");
@@ -180,29 +179,31 @@ public class DBManager implements iDBManager {
     @Override
     public void registerUser(UserData user)
     throws SQLException {
-        statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(GET_MAX_USER_ID);
+      statement = connection.createStatement();
+      ResultSet result = statement.executeQuery(GET_MAX_USER_ID);
 
-        int newID = 1;
-        if (result.next()) {
-            newID = result.getInt("UserID") + 1;
-        }
+      int newID = 1;
+      if (result.next()) {
+				newID = result.getInt("UserID") + 1;
+      }
 
-        statement.executeUpdate(
-                INSERT_USER + "'" + newID + "',"
-                + "'" + user.getUseralias() + "',"
-                + "'" + user.getUsername() + "',"
-                + "'" + user.getPassword() + "',"
-                + "'')");
+       statement.executeUpdate(
+				INSERT_USER + "'" + newID + "',"
+				+ "'" + user.getUseralias() + "',"
+        + "'" + user.getUsername() + "',"
+        + "'" + user.getPassword() + "',"
+				+ "'')"
+			);
     }
 
     @Override
     public void registerNewBlog(BlogData newBlog, UserData user)
     throws SQLException {
-        statement = connection.createStatement();
-        statement.executeUpdate(
-                INSERT_BLOG + newBlog.getBlogname() + "'"
-                + "WHERE UserID='" + user.getUserid() + "'");
+			statement = connection.createStatement();
+      statement.executeUpdate(
+				INSERT_BLOG + newBlog.getBlogname() + "'"
+				+ "WHERE UserID='" + user.getUserid() + "'"
+			);
     }
 
     @Override
@@ -210,7 +211,7 @@ public class DBManager implements iDBManager {
     throws SQLException {
         statement = connection.createStatement();
         statement.executeUpdate(
-                INSERT_BLOG_POST + "'" + (getMaxBlogPostID(user.getUserid())+1) + "',"
+                INSERT_BLOG_POST + "'" + (getMaxBlogPostID()+1) + "',"
                 + "'" + blogPost.getBlogheadline() + "',"
                 + "'" + blogPost.getText() + "',"
                 + "'" + getCurrentDate() + "',"
@@ -219,15 +220,17 @@ public class DBManager implements iDBManager {
 
     @Override
     public void registerNewBlogComment(BlogData blogData, UserData user,
-            BlogComment blogComment)
-            throws SQLException {
-        statement = connection.createStatement();
-        statement.executeUpdate(
-                INSERT_COMMENT + "'" + (getMaxCommentID(blogData.getBlogid(), blogComment.getPostid()) + 1) + "',"
-                + "'" + blogComment.getComment() + "',"
-                + "'" + getCurrentDate() + "',"
-                + "'" + blogData.getBlogid() + "',"
-                + "'" + user.getUserid() + "')");
+		BlogComment blogComment)
+		throws SQLException {
+			statement = connection.createStatement();
+			statement.executeUpdate(
+				INSERT_COMMENT + "'" 
+				+ (getMaxCommentID()+1) + "',"
+				+ "'" + blogComment.getComment() + "',"
+				+ "'" + getCurrentDate() + "',"
+				+ "'" + blogComment.getPostid() + "',"
+				+ "'" + user.getUserid() + "')"
+			);
 
     }
 
@@ -320,29 +323,32 @@ public class DBManager implements iDBManager {
 
     }
 
-    public int getMaxCommentID(int blogPostID, int blogID)
-    throws SQLException {
-        statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(GET_MAX_COMMENT_ID + blogPostID + "'ORDER BY CommentID DESC");
-
-        if (result.next()) {
-            return result.getInt("CommentID");
-        }
-        return 0;
-
-    }
-
     @Override
-    public int getMaxBlogPostID(int blogID)
+    public int getMaxBlogPostID()
     throws SQLException {
         statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(GET_MAX_BLOG_POST_ID + blogID + "' ORDER BY BlogPostID DESC");
+        ResultSet result = statement.executeQuery(
+					GET_MAX_BLOG_POST_ID
+				);
 
-        if (result.next()) {
+        if (result.next())
             return result.getInt("BlogPostID");
-        }
         return 0;
     }
+		
+		@Override
+		public int getLatestBlogPost(int blogID)
+		throws SQLException {
+			statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(
+				GET_LATEST_BLOG_POST + blogID + "'"
+				+ "ORDER BY BlogPostID DESC"
+			);
+			
+			if (result.next())
+				return result.getInt("BlogPostID");
+			return 0;
+		}
 
     @Override
     public int getNumberOfPosts(int blogID)
@@ -376,19 +382,21 @@ public class DBManager implements iDBManager {
     @Override
     public String[] getAllBlogPosts(int blogID)
     throws SQLException {
-        String[] postList = new String[getNumberOfPosts(blogID)];
-        int i = 0;
+			int numPosts = getNumberOfPosts(blogID);
+			String[] postList = new String[numPosts];
+			int i = numPosts-1;
 
-        statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(
-                GET_BLOG_POST_HEADLINE + "UserID ='" + blogID + "'");
+			statement = connection.createStatement();
+      ResultSet result = statement.executeQuery(
+				GET_BLOG_POST_HEADLINE + "UserID = '" + blogID + "'"
+			);
 
-        while (result.next()) {
-            postList[i] = result.getString("BlogPostHeader");
-            i++;
-        }
+      while (result.next()) {
+				postList[i] = result.getString("BlogPostHeader");
+        i--;
+       }
 
-        return postList;
+			return postList;
     }
 
     @Override
@@ -461,14 +469,30 @@ public class DBManager implements iDBManager {
         return 0;
     }
     
+		public int getMaxCommentID()
+    throws SQLException {
+        statement = connection.createStatement();
+        ResultSet result = statement.executeQuery(
+					GET_MAX_COMMENT_ID
+				);
+
+        if (result.next()) {
+            return result.getInt("CommentID");
+        }
+        return 0;
+
+    }
+		
     @Override
-    public int[] getAllCommentID(int blogPostID) throws SQLException  {
+    public int[] getAllCommentID(int blogPostID)
+		throws SQLException  {
         int[] idList = new int[getNumberOfComments(blogPostID)];
         int i = 0;
 
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-            GET_COMMENT_ID + blogPostID + "' ORDER BY CommentID DESC"
+            GET_COMMENT_ID + "BlogPostID = '" + blogPostID + "'"
+						+ " ORDER BY CommentID DESC"
         );
 
         while (result.next()) {
@@ -484,7 +508,7 @@ public class DBManager implements iDBManager {
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-            GET_COMMENT + commentID + "'"
+            GET_COMMENT + "CommentID = '" + commentID + "'"
         );
         
         Comment comment = new Comment();
@@ -497,9 +521,9 @@ public class DBManager implements iDBManager {
         }
         return comment;
     }
-    
-    @Override
-    public Comment[] getAllComments(int blogID, int blogPostID)
+		
+		@Override
+    public Comment[] getAllComments(int blogPostID)
     throws SQLException {
         int numComments = getNumberOfComments(blogPostID);
         int[] idList = getAllCommentID(blogPostID);

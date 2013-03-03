@@ -17,7 +17,7 @@
 		blogID = Integer.parseInt(request.getParameter("blogid"));
 		
 		// Hämta senaste blogginlägget från nuvarande blogg från DB
-		postID = dbManager.getMaxBlogPostID(blogID);
+		postID = dbManager.getLatestBlogPost(blogID);
 		
 		if (request.getParameter("postid") != null) {
 			// Om post id finns i url fältet, hämta denna post
@@ -25,9 +25,9 @@
 		}
 		
 		if (postID > 0) {
-			String postTitle = dbManager.getBlogPostTitle(blogID, postID);
-			String postContent = dbManager.getBlogPostContent(blogID, postID);
-			String postDate = dbManager.getBlogPostDate(blogID, postID);
+			String postTitle = dbManager.getBlogPostTitle(postID);
+			String postContent = dbManager.getBlogPostContent(postID);
+			String postDate = dbManager.getBlogPostDate(postID);
 			String postAuthor = dbManager.getBlogPostAuthor(blogID, postID);
 
 			blogPage =

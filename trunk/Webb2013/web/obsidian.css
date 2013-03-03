@@ -5,7 +5,7 @@
 }
 
 body {
-	background-color: black;
+	background: url(wallpaper.jpg) fixed no-repeat;
 }
 
 a {
@@ -126,7 +126,7 @@ hr {
 	text-align: center;
 }
 #nav-bar-content {
-	margin: 20px 0px 0px 0px;
+	margin: 30px 0px 0px 0px;
 }
 #nav-bar-content ul {
 	list-style: none;
@@ -186,6 +186,7 @@ p.comment-date {
     font-size: 10px;
 }
 
+
 /* BLOG POST COMMENT FORM */
 #comment-form-box{
 	margin: 0px 0px 0px 50px;
@@ -213,7 +214,13 @@ p.comment-date {
 
 /* BLOG POST LIST */
 #blogpost-list-box {
-	margin: 0px 0px 0px 40px;
+	margin: 40px 0px 0px 40px;
+	line-height: 30px;
+	
+}
+#blogpost-list-title {
+	font-size: 22px;
+	font-weight: bold;
 }
 
 

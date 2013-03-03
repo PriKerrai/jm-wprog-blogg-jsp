@@ -7,7 +7,7 @@ package Bean;
  */
 public class BlogData {
 
-    private int blogid = -1;
+    private int blogid = 0;
     private String blogname = "";
 
     public void setBlogid(int newID) {

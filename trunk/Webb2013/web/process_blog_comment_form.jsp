@@ -15,7 +15,6 @@
 %>
 
 <%
-    System.out.println("POST ID: "+blogComment.getPostid());
     ProcessBlogCommentForm process = new ProcessBlogCommentForm(user, blogData, blogComment);
     
     int blogID = blogData.getBlogid(),
