@@ -23,6 +23,8 @@ public abstract interface iDBManager {
 	 * BlogID is the same as UserID, just renamed to make sence in its context.
 	 */
 	
+	public abstract Connection connectDB(String username, String password);
+	
 	public abstract int getNumberOfBlogs()
 	throws SQLException;
 	
@@ -59,13 +61,14 @@ public abstract interface iDBManager {
 	public abstract int getMaxBlogPostID(int blogID) 
 	throws SQLException;
 	
+	public abstract void registerNewBlog(BlogData newBlog, UserData user)
+	throws SQLException;
+	
 	public abstract void registerNewBlogPost(BlogPost blogPost, UserData user)
 	throws SQLException;
         
 	public void registerNewBlogComment(BlogData blogData, UserData user, BlogComment blogComment)
 	throws SQLException;
-	
-  public abstract Connection connectDB(String username, String password);
 	
 	public abstract boolean isValidLogin(String username, String password)
 	throws SQLException;
@@ -76,8 +79,12 @@ public abstract interface iDBManager {
 	public abstract boolean isValidRegInput(String useralias, String username)
 	throws SQLException;
 	
-	public abstract void registerUser(UserData user) throws SQLException;
+	public abstract void registerUser(UserData user)
+	throws SQLException;
 
+	public abstract String getPassword(int userID)
+	throws SQLException;
+	
 	public abstract Date getCurrentDate(); 
 
 }

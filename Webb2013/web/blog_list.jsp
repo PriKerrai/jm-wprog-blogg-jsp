@@ -11,8 +11,8 @@
 	int[] idList = blogInfo.getAllBlogID();
 	String[] blogList = blogInfo.getBlogList();
 %>
+<h1 class="content-page-title">Registered Blogs</h1>
 <div id="blog-list-box">
-	<h1 class="content-page-title">Registered Blogs</h1>
 	<%
 		if (blogList.length > 0) {
 			for (int i = 0; i < blogList.length; i++)

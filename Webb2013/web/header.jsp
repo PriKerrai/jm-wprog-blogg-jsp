@@ -9,7 +9,7 @@
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
 <jsp:useBean id="blogData" class="Bean.BlogData" scope="session" />
 
-<a id="blog-title" href="index.jsp"><%= blogData.getBlogName() %></a>
+<a id="blog-title" href="index.jsp"><%= blogData.getBlogname() %></a>
 <div id="nav-bar-content">
 	<ul>
 		<li><a href="index.jsp">Home</a></li>

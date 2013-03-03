@@ -18,19 +18,19 @@
 				!database.getPassword().equals("")) {
 			int blogID = Integer.parseInt(request.getParameter("blogid"));
 			String blogName = blogInfo.getBlogName(blogID);
-			blogData.setBlogID(blogID);
-			blogData.setBlogName(blogName);
+			blogData.setBlogid(blogID);
+			blogData.setBlogname(blogName);
 %>
-			<jsp:setProperty name="blogData" property="blogID" value="<%= blogID %>" />
-			<jsp:setProperty name="blogData" property="blogName" value="<%= blogName %>" />
+			<jsp:setProperty name="blogData" property="blogid" value="<%= blogID %>" />
+			<jsp:setProperty name="blogData" property="blogname" value="<%= blogName %>" />
 <%
 		}
 	} else {
-		blogData.setBlogID(-1);
-		blogData.setBlogName("Blogimus");
+		blogData.setBlogid(-1);
+		blogData.setBlogname("Blogimus");
 %>
-		<jsp:setProperty name="blogData" property="blogID" value="-1" />
-		<jsp:setProperty name="blogData" property="blogName" value="Blogimus" />
+		<jsp:setProperty name="blogData" property="blogid" value="-1" />
+		<jsp:setProperty name="blogData" property="blogname" value="Blogimus" />
 <%
 	}
 %>

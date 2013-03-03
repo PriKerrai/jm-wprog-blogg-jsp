@@ -7,22 +7,22 @@ package Bean;
  */
 public class BlogData {
 
-    private int blogID = -1;
-    private String blogName = "";
+    private int blogid = -1;
+    private String blogname = "";
 
-    public void setBlogID(int newID) {
-        blogID = newID;
+    public void setBlogid(int newID) {
+        blogid = newID;
     }
 
-    public int getBlogID() {
-        return blogID;
+    public int getBlogid() {
+        return blogid;
     }
 
-    public void setBlogName(String bName) {
-        blogName = bName;
+    public void setBlogname(String bName) {
+        blogname = bName;
     }
 
-    public String getBlogName() {
-        return blogName;
+    public String getBlogname() {
+        return blogname;
     }
 }

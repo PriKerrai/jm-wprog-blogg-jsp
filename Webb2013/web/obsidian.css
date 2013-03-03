@@ -175,6 +175,17 @@ hr {
 }
 
 
+/* BLOG LIST */
+#blog-list-box {
+	margin: 0px 0px 0px 50px;
+}
+
+
+/* BLOG POST LIST */
+#blogpost-list-box {
+	margin: 0px 0px 0px 40px;
+}
+
 /* LOGIN FORM */
 #login-form-box {
 	margin: 40px 0px 0px 50px;

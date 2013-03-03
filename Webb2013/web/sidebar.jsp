@@ -21,7 +21,7 @@
 		postList = blogInfo.getBlogPostList(blogID);
 	}
 %>
-<div id="blog-list-box">
+<div id="blogpost-list-box">
 	<%
 		for (int i = 0; i < postList.length; i++)
 			out.println("<a href=\"index.jsp?blogid="+blogID+"&postid="+idList[i]+"\">"+postList[i]+"</a>");
