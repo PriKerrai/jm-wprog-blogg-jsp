@@ -16,7 +16,7 @@
 	<%
 		if (blogList.length > 0) {
 			for (int i = 0; i < blogList.length; i++)
-				out.println("<a href=\"index.jsp?blogid="+idList[i]+"\">"+blogList[i]+"</a>");
+				out.println("<a href=\"index.jsp?blogid="+idList[i]+"\">"+blogList[i]+"</a><br/>");
 		} else
 			out.println("<p class=\"content-msg\">There are currently no registered blogs.</p>");
 	%>
