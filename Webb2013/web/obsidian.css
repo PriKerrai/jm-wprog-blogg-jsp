@@ -214,13 +214,20 @@ p.comment-date {
 
 /* BLOG POST LIST */
 #blogpost-list-box {
-	margin: 40px 0px 0px 40px;
-	line-height: 30px;
-	
+	margin: 40px 0px 40px 40px;
 }
 #blogpost-list-title {
 	font-size: 22px;
 	font-weight: bold;
+}
+#blogpost-list-box .blogpost-box {
+	/*line-height: 0px;*/
+}
+#blogpost-list-box .blogpost-author {
+	margin: 0px 0px 0px 10px;
+}
+#blogpost-list-box .blogpost-numcomments {
+	margin: 0px 0px 0px 10px;
 }
 
 

@@ -10,6 +10,7 @@ import Bean.BlogPost;
 import Bean.UserData;
 import Interface.iDBManager;
 import Logic.Comment;
+import Logic.Post;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,14 +42,14 @@ public class DBManager implements iDBManager {
     private static final String GET_ALL_BLOGID = "SELECT UserID FROM JM_UserInformation WHERE Blog <> ''";
     private static final String INSERT_BLOG = "UPDATE JM_UserInformation SET Blog='";
     // BLOG POST
-    private static final String GET_BLOG_POST_ID = "SELECT BlogPostID FROM JM_BlogPost WHERE UserID = '";
+		private static final String GET_BLOG_POST = "SELECT * FROM JM_BlogPost";
     private static final String GET_MAX_BLOG_POST_ID = "SELECT TOP(1) BlogPostID FROM JM_BlogPost ORDER BY BlogPostID DESC";
 		private static final String GET_LATEST_BLOG_POST = "SELECT TOP(1) BlogPostID FROM JM_BlogPost WHERE UserID = '";
-    private static final String GET_BLOG_POST_HEADLINE = "SELECT BlogPostHeader FROM JM_BlogPost WHERE ";
+    private static final String GET_BLOG_POST_HEADLINE = "SELECT BlogPostHeader FROM JM_BlogPost";
     private static final String GET_BLOG_POST_DATE = "SELECT BlogPostDate FROM JM_BlogPost WHERE ";
     private static final String GET_BLOG_POST_TEXT = "SELECT BlogPostText FROM JM_BlogPost WHERE ";
-    private static final String GET_BLOG_POST_AUTHOR = "SELECT Username FROM JM_UserInformation WHERE UserID ='";
-    private static final String GET_NUM_POSTS = "SELECT COUNT(*) as NumPosts FROM JM_BlogPost WHERE UserID = '";
+    private static final String GET_BLOG_POST_AUTHOR = "SELECT Username FROM JM_UserInformation WHERE UserID = '";
+    private static final String GET_NUM_POSTS = "SELECT COUNT(*) as NumPosts FROM JM_BlogPost";
     private static final String INSERT_BLOG_POST = "INSERT INTO JM_BlogPost VALUES (";
     // COMMENT
     private static final String GET_COMMENT = "SELECT * FROM JM_BlogComment WHERE ";
@@ -110,7 +111,7 @@ public class DBManager implements iDBManager {
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
-					GET_BLOG_POST_HEADLINE + "BlogPostID = '" + postID + "'"
+					GET_BLOG_POST_HEADLINE + " WHERE BlogPostID = '" + postID + "'"
 				);
 
         if (result.next()) {
@@ -148,7 +149,7 @@ public class DBManager implements iDBManager {
     }
 
     @Override
-    public String getBlogPostAuthor(int blogID, int postID)
+    public String getBlogPostAuthor(int blogID)
     throws SQLException {
         statement = connection.createStatement();
         ResultSet result = statement.executeQuery(
@@ -351,10 +352,12 @@ public class DBManager implements iDBManager {
 		}
 
     @Override
-    public int getNumberOfPosts(int blogID)
+    public int getNumberOfPosts()
     throws SQLException {
         statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(GET_NUM_POSTS + blogID + "'");
+        ResultSet result = statement.executeQuery(
+					GET_NUM_POSTS
+				);
 
         if (result.next()) {
             return result.getInt("NumPosts");
@@ -363,38 +366,50 @@ public class DBManager implements iDBManager {
     }
 
     @Override
-    public int[] getAllBlogPostID(int blogID)
+    public int[] getAllBlogPostID()
     throws SQLException {
-        int[] idList = new int[getNumberOfPosts(blogID)];
-        int i = 0;
+				int numPosts = getNumberOfPosts();
+        int[] idList = new int[numPosts];
+        int i = numPosts-1;
 
         statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(GET_BLOG_POST_ID + blogID + "' ORDER BY BlogPostID DESC");
+        ResultSet result = statement.executeQuery(
+					GET_BLOG_POST + " ORDER BY BlogPostID DESC"
+				);
 
         while (result.next()) {
-            idList[i] = result.getInt("BlogPostID");
-            i++;
+					idList[i] = result.getInt("BlogPostID");
+          i--;
         }
-
         return idList;
     }
 
     @Override
-    public String[] getAllBlogPosts(int blogID)
+    public Post[] getAllBlogPosts()
     throws SQLException {
-			int numPosts = getNumberOfPosts(blogID);
-			String[] postList = new String[numPosts];
+			int numPosts = getNumberOfPosts();
+			Post[] postList = new Post[numPosts];
 			int i = numPosts-1;
 
 			statement = connection.createStatement();
       ResultSet result = statement.executeQuery(
-				GET_BLOG_POST_HEADLINE + "UserID = '" + blogID + "'"
+				GET_BLOG_POST + " ORDER BY BlogPostID DESC"
 			);
-
+			
       while (result.next()) {
-				postList[i] = result.getString("BlogPostHeader");
-        i--;
-       }
+				postList[i] = new Post();
+				postList[i].setUserID(result.getInt("UserID"));
+				postList[i].setHeadline(result.getString("BlogPostHeader"));
+				postList[i].setAuthor(
+					getBlogPostAuthor(
+						result.getInt("UserID")
+					)
+				);
+				postList[i].setNumComments(
+					getNumberOfComments(result.getInt("BlogPostID"))
+				);
+				i--;
+      }
 
 			return postList;
     }
@@ -457,9 +472,9 @@ public class DBManager implements iDBManager {
         return blogList;
     }
     
-    public int getNumberOfComments(int blogPostID) throws SQLException {
-        
-        statement = connection.createStatement();
+    public int getNumberOfComments(int blogPostID)
+		throws SQLException {
+				statement = connection.createStatement();
         ResultSet result = statement.executeQuery(GET_NUM_COMMENTS + blogPostID + "'");
         
         if (result.next()) {
