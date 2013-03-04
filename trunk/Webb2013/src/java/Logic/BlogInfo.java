@@ -20,27 +20,38 @@ public class BlogInfo {
 		
 	}
 	
-	public String getBlogName(int blogID) throws SQLException {
+	public String getBlogName(int blogID)
+	throws SQLException {
 		return dbManager.getBlogName(blogID);
 	}
 	
-	public int[] getAllBlogID() throws SQLException{
+	public int[] getAllBlogID()
+	throws SQLException{
 		return dbManager.getAllBlogID();
 	}
 	
-	public String[] getBlogList() throws SQLException {
+	public String[] getBlogList()
+	throws SQLException {
 		return dbManager.getAllBlogNames();
 	}
 	
-	public int[] getAllBlogPostID(int blogID) throws SQLException {
-		return dbManager.getAllBlogPostID(blogID);
+	public int[] getAllBlogPostID()
+	throws SQLException {
+		return dbManager.getAllBlogPostID();
 	}
 	
-	public String[] getBlogPostList(int blogID) throws SQLException {
-		return dbManager.getAllBlogPosts(blogID);
+	public Post[] getBlogPostList()
+	throws SQLException {
+		return dbManager.getAllBlogPosts();
 	}
 	
-	public int[] getAllCommentID(int blogPostID) throws SQLException {
+	public int getLatestBlogPost(int blogID)
+	throws SQLException {
+		return dbManager.getLatestBlogPost(blogID);
+	}
+	
+	public int[] getAllCommentID(int blogPostID)
+	throws SQLException {
 		return dbManager.getAllCommentID(blogPostID);
   }
         

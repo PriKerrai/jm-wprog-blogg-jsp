@@ -5,19 +5,18 @@
 
 --%>
 
-<%@page import="Database.DBManager"%>
-<%@page import="Interface.iDBManager"%>
+<%@page import="Logic.BlogInfo"%>
 
+<jsp:useBean id="database" class="Bean.DatabaseLoginData" scope="application" />
 <jsp:useBean id="user" class="Bean.UserData" scope="session" />
-<jsp:useBean id="database" class="Bean.DatabaseLoginData" scope="session" />
 <jsp:useBean id="blogData" class="Bean.BlogData" scope="session" />
 <jsp:useBean id="newBlogData" class="Bean.BlogData" scope="session" />
 
 <%
 	int postID = 0;
 	if (!database.getLogin().equals("") && !database.getPassword().equals("")) {
-		iDBManager dbManager = new DBManager();
-		postID = dbManager.getLatestBlogPost(blogData.getBlogid());
+		BlogInfo blogInfo = new BlogInfo();
+		postID = blogInfo.getLatestBlogPost(blogData.getBlogid());
 	}
 %>
 
@@ -79,6 +78,6 @@
 	<% } %>
 </div>
 <div id="wrapper-east">
-    <jsp:include page="sidebar.jsp" />
+	<jsp:include page="sidebar.jsp" />
 </div>
 <div class="clear"></div>

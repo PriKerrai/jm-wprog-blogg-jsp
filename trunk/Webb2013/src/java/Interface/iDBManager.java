@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import Bean.BlogPost;
 import Logic.Comment;
+import Logic.Post;
 import java.util.Date;
 
 /**
@@ -38,13 +39,13 @@ public abstract interface iDBManager {
 	public abstract String[] getAllBlogNames()
 	throws SQLException;
 	
-	public abstract int getNumberOfPosts(int blogID)
+	public abstract int getNumberOfPosts()
 	throws SQLException;
 	
-	public abstract int[] getAllBlogPostID(int blogID)
+	public abstract int[] getAllBlogPostID()
 	throws SQLException;
 	
-	public abstract String[] getAllBlogPosts(int blogID)
+	public abstract Post[] getAllBlogPosts()
 	throws SQLException;
 	
 	public abstract String getBlogPostTitle(int postID)
@@ -56,7 +57,7 @@ public abstract interface iDBManager {
 	public abstract String getBlogPostDate(int postID)
 	throws SQLException;
 	
-	public abstract String getBlogPostAuthor(int blogID, int postID)
+	public abstract String getBlogPostAuthor(int blogID)
 	throws SQLException;
 	
 	public abstract int getMaxBlogPostID() 

@@ -4,20 +4,23 @@
     Author     : Josef
 --%>
 
-<%@ page import="Interface.iDBManager"
-         import="Database.DBManager"
-%>
+<%@page import="Logic.BlogInfo"%>
+<%@page import="Logic.BlogPostInfo"%>
+
+<jsp:useBean id="blogData" class="Bean.BlogData" scope="session" />
+
 <%
-	iDBManager dbManager = new DBManager();
-	
-	int blogID, postID = 0;
+	BlogInfo blogInfo = new BlogInfo();
+	BlogPostInfo postInfo = new BlogPostInfo();
+
+	int blogID = 0, postID = 0;
 	String blogPage = "";
 	
-	if (request.getParameter("blogid") != null) {
-		blogID = Integer.parseInt(request.getParameter("blogid"));
+	if (blogData.getBlogid() > 0) {
+		blogID = blogData.getBlogid();
 		
 		// Hämta senaste blogginlägget från nuvarande blogg från DB
-		postID = dbManager.getLatestBlogPost(blogID);
+		postID = blogInfo.getLatestBlogPost(blogID);
 		
 		if (request.getParameter("postid") != null) {
 			// Om post id finns i url fältet, hämta denna post
@@ -25,10 +28,10 @@
 		}
 		
 		if (postID > 0) {
-			String postTitle = dbManager.getBlogPostTitle(postID);
-			String postContent = dbManager.getBlogPostContent(postID);
-			String postDate = dbManager.getBlogPostDate(postID);
-			String postAuthor = dbManager.getBlogPostAuthor(blogID, postID);
+			String postTitle = postInfo.getBlogPostTitle(postID);
+			String postContent = postInfo.getBlogPostContent(postID);
+			String postDate = postInfo.getBlogPostDate(postID);
+			String postAuthor = postInfo.getBlogPostAuthor(blogID);
 
 			blogPage =
 				"<div id=\"blog-post-content-box\">"+
